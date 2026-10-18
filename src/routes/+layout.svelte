@@ -9,6 +9,7 @@
 	import Rail from '#lib/components/Rail.svelte';
 	import ThemeToggle from '#lib/components/ThemeToggle.svelte';
 	import Tri from '#lib/components/Tri.svelte';
+	import Analytics from '#lib/components/Analytics.svelte';
 	import { footerConfig, profileConfig, siteConfig } from '#config';
 	import { posts } from '#lib/posts';
 	import type { LayoutData } from './$types';
@@ -22,6 +23,7 @@
 </script>
 
 <Tri sweep />
+<Analytics />
 
 <div class="shell">
 	<div class="side">
@@ -75,9 +77,6 @@
 		gap: 0.6rem;
 		padding: 0 1.25rem 1.25rem;
 		border-right: 1px solid var(--ef-rule);
-	}
-	.rail-foot p {
-		margin: 0;
 	}
 	.main {
 		display: flex;

@@ -1,0 +1,715 @@
+// 友链数据：从旧博客（Firefly）原样搬过来。
+// title 是对方的名字，siteurl 是主页，rss 用于朋友圈聚合。
+
+export interface FriendLink {
+	/** 对方站点的名字 */
+	title: string;
+	/** 头像 */
+	imgurl: string;
+	/** 站点封面图 */
+	cover?: string;
+	/** 一句话介绍 */
+	desc?: string;
+	/** 主页地址 */
+	siteurl: string;
+	/** RSS 地址，有的话会进入朋友圈 */
+	rss?: string;
+	/** 标签 */
+	tags?: string[];
+	/** 权重，越大越靠前 */
+	weight?: number;
+	/** 是否启用 */
+	enabled?: boolean;
+}
+
+export const friendsConfig: FriendLink[] = [
+	{
+		title: "夏夜流萤",
+		imgurl:
+			"https://weavatar.com/avatar/d252655d40d6874417a720bad0a6c5f77f8f6a1fd2f882f8f338402dc37e4190?s=640",
+		cover: "https://tu.520781.xyz/file/youlian/blog.cuteleaf.cn.png",
+		desc: "飞萤之火自无梦的长夜亮起，绽放在终竟的明天。",
+		siteurl: "https://blog.cuteleaf.cn",
+		rss: "https://blog.cuteleaf.cn/rss.xml",
+		tags: ["Blog"],
+		weight: 100, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "fqzlr",
+		imgurl: "https://q1.qlogo.cn/g?b=qq&nk=20447289&s=640",
+		cover: "https://tu.520781.xyz/file/youlian/blog.fqzlr.top.png",
+		desc: "坐姿不如起而行。",
+		siteurl: "https://blog.fqzlr.top",
+		rss: "https://blog.fqzlr.top/rss.xml",
+		tags: ["Blog"],
+		weight: 99, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "年华",
+		imgurl: "https://q1.qlogo.cn/g?b=qq&nk=1323860289&s=640",
+		cover: "https://tu.520781.xyz/file/youlian/blog.amamo.top.png",
+		desc: "分享生活和技术。",
+		siteurl: "https://blog.amamo.top/",
+		rss: "https://blog.amamo.top/rss.xml",
+		tags: ["Blog"],
+		weight: 98, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "团子和蛋糕",
+		imgurl: "https://re.tsh520.cn/zl/tx.webp",
+		cover: "https://tu.520781.xyz/file/youlian/blog.tsh520.cn.png",
+		desc: "如果你喜欢那么欢迎来到我的世界！",
+		siteurl: "https://blog.tsh520.cn",
+		rss: "https://blog.tsh520.cn/rss.xml",
+		tags: ["Blog"],
+		weight: 97, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "UpXuu",
+		imgurl: "https://upxuu.com/images/20260214145619.jpg",
+		cover: "https://tu.520781.xyz/file/youlian/upxuu.com.png",
+		desc: "逐光而上",
+		siteurl: "https://upxuu.com/",
+		rss: "https://upxuu.com/rss.xml",
+		tags: ["Blog"],
+		weight: 96, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "Dogxi 的狗窝",
+		imgurl: "https://blog.dogxi.me/avatar.png",
+		cover: "https://tu.520781.xyz/file/youlian/blog.dogxi.me.png",
+		desc: "Dogxi 的个人博客，因为热爱所以热爱",
+		siteurl: "https://blog.dogxi.me",
+		rss: "https://blog.dogxi.me/rss.xml",
+		tags: ["Blog"],
+		weight: 95, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "versus0",
+		imgurl:
+			"https://img.542000.xyz/file/friend_avatar/1778931720838_f167cb95af9d881f4378b92b3e181d89_4647054993754934443.jpg",
+		cover: "https://tu.520781.xyz/file/youlian/blog.542000.xyz.png",
+		desc: "I may be still unripened.But I'm not afraid.",
+		siteurl: "https://blog.542000.xyz",
+		rss: "https://blog.542000.xyz/rss.xml",
+		tags: ["Blog"],
+		weight: 94, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "Hyde Blog",
+		imgurl: "https://seasir.top/assets/avatar.avif",
+		cover: "https://tu.520781.xyz/file/youlian/seasir.top.png",
+		desc: "人心中的成见是一座大山",
+		siteurl: "https://seasir.top/",
+		rss: "https://seasir.top/rss.xml",
+		tags: ["Blog"],
+		weight: 93, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "二叉树树",
+		imgurl: "https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=0",
+		cover: "https://tu.520781.xyz/file/youlian/2x.nz.png",
+		desc: "Protect What You Love.",
+		siteurl: "https://2x.nz",
+		rss: "https://2x.nz/posts/rss.xml",
+		tags: ["Blog"],
+		weight: 92, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "张萌萌",
+		imgurl: "https://blog.nw177.cn/assets/avatar.webp",
+		cover: "https://tu.520781.xyz/file/youlian/blog.nw177.cn.png",
+		desc: "春风得意马蹄疾 一日看尽长安花",
+		siteurl: "https://blog.nw177.cn/",
+		rss: "https://blog.nw177.cn/rss.xml",
+		tags: ["Blog"],
+		weight: 91, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "ZhiJing's Blog",
+		imgurl: "https://iwexe.top/avatar.svg",
+		cover: "https://tu.520781.xyz/file/youlian/iwexe.top.png",
+		desc: " Go with the flow.",
+		siteurl: "https://iwexe.top/",
+		rss: "https://iwexe.top/rss.xml",
+		tags: ["Blog"],
+		weight: 90, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "星遐蝶梦",
+		imgurl: "https://blog.casto.top/assets/images/avatar.png",
+		cover: "https://tu.520781.xyz/file/youlian/blog.casto.top.png",
+		desc: "星穹漫遐，蝶携清梦。",
+		siteurl: "https://blog.casto.top",
+		rss: "https://blog.casto.top/rss.xml",
+		tags: ["Blog"],
+		weight: 89, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "L!!!!ght",
+		imgurl:
+			"https://easyimg.kejk.cn/i/4484873c-c2cc-4b3d-bc35-5c72ed01cfd9.webp",
+		cover: "https://tu.520781.xyz/file/youlian/sunlight.kejk.cn.png",
+		desc: "阳光正好，慢慢前行。",
+		siteurl: "https://sunlight.kejk.cn",
+		rss: "https://sunlight.kejk.cn/rss.xml",
+		tags: ["Blog"],
+		weight: 88, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "Saimen Blog",
+		imgurl: "https://com.z2m.store/img/butterfly-icon.png",
+		cover: "https://tu.520781.xyz/file/youlian/blog.z2m.store.png",
+		desc: "读史可以明智,知古方能鉴今。",
+		siteurl: "https://blog.z2m.store",
+		rss: "https://blog.z2m.store/rss.xml",
+		tags: ["Blog"],
+		weight: 87, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "沈幼楚の小窝",
+		imgurl: "https://q1.qlogo.cn/g?b=qq&nk=1050925710&s=640",
+		cover: "https://tu.520781.xyz/file/youlian/blog.shenyouchu.cn.png",
+		desc: "天真永不消逝，浪漫至死不渝.",
+		siteurl: "https://blog.shenyouchu.cn/",
+		rss: "https://blog.shenyouchu.cn/rss.xml",
+		tags: ["Blog"],
+		weight: 86, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "莱姆Lime",
+		imgurl: "https://sudachi.top/logo.jpeg",
+		cover: "https://tu.520781.xyz/file/youlian/sudachi.top.png",
+		desc: "聚是火簇，散作繁星",
+		siteurl: "https://sudachi.top/",
+		rss: "https://sudachi.top/rss2.xml",
+		tags: ["技术"],
+		weight: 85, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "THW's Blog",
+		imgurl: "https://image.tianhw.top/avatar.webp",
+		cover: "https://tu.520781.xyz/file/youlian/blog.tianhw.top.png",
+		desc: "前途似海，来日方长",
+		siteurl: "https://blog.tianhw.top",
+		rss: "https://blog.tianhw.top/rss.xml",
+		tags: ["Blog"],
+		weight: 84, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "Sigrika-善良耙耙柑🍊",
+		imgurl: "https://qwq.sigrika.cc/assets/images/avatar.gif",
+		cover: "https://tu.520781.xyz/file/youlian/qwq.sigrika.cc.png",
+		desc: "记录我的二次元之旅",
+		siteurl: "https://qwq.sigrika.cc/",
+		rss: "https://qwq.sigrika.cc/rss.xml",
+		tags: ["Blog"],
+		weight: 83, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "董健颖",
+		imgurl:
+			"https://weavatar.com/api/avatar/e3e6c5e34c0111ab1a16acb37cec03f01907406e60b49477c089001f5ed083b8?s=50&t=1781771969751?s=640",
+		cover: "https://tu.520781.xyz/file/youlian/dongjianying.xyz.png",
+		desc: "这是我的个人博客，记录我的学习和生活点滴，分享我的学习经验和见解。希望在这里能与志同道合的朋友们交流和成长！",
+		siteurl: "https://dongjianying.xyz",
+		rss: "https://dongjianying.xyz/rss.xml",
+		tags: ["Blog"],
+		weight: 82, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "萧小晓",
+		imgurl: "https://www.lxlovo.top/png.png",
+		cover: "https://tu.520781.xyz/file/youlian/blog.lxlovo.top.png",
+		desc: "萧小晓",
+		siteurl: "https://blog.lxlovo.top",
+		rss: "https://blog.lxlovo.top/rss.xml",
+		tags: ["Blog"],
+		weight: 81, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "JustPureH2O 的博客",
+		imgurl: "https://justpureh2o.cn/avatar.jpg",
+		cover: "https://tu.520781.xyz/file/youlian/justpureh2o.cn.png",
+		desc: "穷方圆平直之情，尽规矩准绳之用",
+		siteurl: "https://justpureh2o.cn",
+		rss: "https://justpureh2o.cn/rss.xml",
+		tags: ["Blog"],
+		weight: 80, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "bug_zhang",
+		imgurl: "https://bugzhang.online/_astro/avatar.Da2_m5jG_2uF8Oi.webp",
+		cover: "https://tu.520781.xyz/file/youlian/bugzhang.online.png",
+		desc: "我到底还要写多少bug。",
+		siteurl: "https://bugzhang.online",
+		rss: "https://bugzhang.online/rss.xml",
+		tags: ["Blog"],
+		weight: 79, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "SengokuCola'sBlog",
+		imgurl: "https://lsky.nibutupaopao.top/i/2026/07/09/6a4fc40211f69.png",
+		cover: "https://tu.520781.xyz/file/youlian/home.nibutupaopao.top.png",
+		desc: "随着风的轨迹 在那耀眼的午后",
+		siteurl: "https://home.nibutupaopao.top",
+		rss: "https://home.nibutupaopao.top/rss.xml",
+		tags: ["Blog"],
+		weight: 78, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "Flygeonの小站",
+		imgurl: "https://flygeon.top/_astro/avatar.CCT2o-B8_13KVJb.webp",
+		cover: "https://tu.520781.xyz/file/youlian/flygeon.top.png",
+		desc: "音无结弦之时，悦动天使之心； 立于浮华之世，奏响天籁之音。",
+		siteurl: "https://flygeon.top",
+		rss: "https://flygeon.top/rss.xml",
+		tags: ["Blog"],
+		weight: 77, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "JerryLife",
+		imgurl: "https://free.picui.cn/free/2026/07/16/6a58eb63ecbd1.png",
+		cover: "https://tu.520781.xyz/file/youlian/www.jerry-nis.top.png",
+		desc: "Enjoy life",
+		siteurl: "https://www.jerry-nis.top/",
+		rss: "https://www.jerry-nis.top/rss.xml",
+		tags: ["Blog"],
+		weight: 76, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "Zero - 浮生",
+		imgurl: "https://vtdd.vip/_astro/avatar.ryzKiMN3_19g6Gw.webp",
+		cover: "https://tu.520781.xyz/file/youlian/vtdd.vip.png",
+		desc: "浮生一刹万般皆舍.",
+		siteurl: "https://vtdd.vip",
+		rss: "https://vtdd.vip/rss.xml",
+		tags: ["Blog"],
+		weight: 75, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "Olinl Blog",
+		imgurl: "https://blog.olinl.com/assets/images/avatar.webp",
+		cover: "https://tu.520781.xyz/file/youlian/blog.olinl.com.png",
+		desc: "分享、实践、学习",
+		siteurl: "https://blog.olinl.com",
+		rss: "https://blog.olinl.com/rss.xml",
+		tags: ["Blog"],
+		weight: 74, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "极客指北",
+		imgurl: "https://www.90svip.cn/logo.png",
+		cover: "https://tu.520781.xyz/file/youlian/www.90svip.cn.png",
+		desc: "极客指北",
+		siteurl: "https://www.90svip.cn",
+		rss: "",
+		tags: ["Blog"],
+		weight: 73, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "Refrain",
+		imgurl: "https://s41.ax1x.com/2026/07/20/pm6aZIx.jpg",
+		cover: "https://tu.520781.xyz/file/youlian/blog.50982026.xyz.png",
+		desc: "记录生活并分享经历的赛博小窝。",
+		siteurl: "https://blog.50982026.xyz",
+		rss: "https://blog.50982026.xyz/rss.xml",
+		tags: ["Blog"],
+		weight: 72, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "他说",
+		imgurl: "https://090909.top/assets/images/logo.ico",
+		cover: "https://tu.520781.xyz/file/youlian/090909.top.png",
+		desc: "梁栋烨的博客网站。",
+		siteurl: "https://090909.top/",
+		rss: "https://090909.top/atom.xml",
+		tags: ["Blog"],
+		weight: 71, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "xane",
+		imgurl:
+			"https://cloudflare-imgbed-d88.pages.dev/file/1784102742642_头像.jpg",
+		cover: "https://tu.520781.xyz/file/youlian/xane.eu.cc.png",
+		desc: "Keep going.",
+		siteurl: "https://xane.eu.cc",
+		rss: "https://xane.eu.cc/rss.xml",
+		tags: ["Blog"],
+		weight: 70, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "Xixmu",
+		imgurl: "https://xixmu.top/_astro/head_ima.rsW3s28l_1KtIxl.avif",
+		cover: "https://tu.520781.xyz/file/youlian/xixmu.top.png",
+		desc: "记忆干枯前描绘。",
+		siteurl: "https://xixmu.top/",
+		rss: "https://xixmu.top/rss.xml",
+		tags: ["Blog"],
+		weight: 69, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "星诺的博客",
+		imgurl: "https://blog.astrvow.com/_astro/logo.DuHgmi9I_1k5uPc.webp",
+		cover: "https://tu.520781.xyz/file/youlian/blog.astrvow.com.png",
+		desc: "只要热爱，太阳就会升起！",
+		siteurl: "https://blog.astrvow.com/",
+		rss: "https://blog.astrvow.com/rss.xml",
+		tags: ["Blog"],
+		weight: 68, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "倾听风雨",
+		imgurl: "https://q1.qlogo.cn/g?b=qq&nk=3931968261&s=640",
+		cover: "https://tu.520781.xyz/file/youlian/blog.qtfyu.top.png",
+		desc: "huh！",
+		siteurl: "https://blog.qtfyu.top/",
+		rss: "https://blog.qtfyu.top/rss.xml",
+		tags: ["Blog"],
+		weight: 67, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "拾玖的博客",
+		imgurl: "https://shijiucode.cn/avatar.jpg",
+		cover: "https://tu.520781.xyz/file/youlian/shijiucode.cn.png",
+		desc: "喜欢折腾，尝试创作。",
+		siteurl: "https://shijiucode.cn",
+		rss: "https://shijiucode.cn/shijiu-blog/api/rss.xml",
+		tags: ["Blog"],
+		weight: 66, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "StackMeow",
+		imgurl: "https://www.stackmeow.tech/assets/profile/avatar.jpeg",
+		cover: "https://tu.520781.xyz/file/youlian/www.stackmeow.tech.png",
+		desc: "人生是层层堆叠的经历，而内心永远保有一只自在小猫。",
+		siteurl: "https://www.stackmeow.tech",
+		rss: "https://www.stackmeow.tech/rss.xml",
+		tags: ["Blog"],
+		weight: 65, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "潇绪空のBlog",
+		imgurl: "https://reknal.com/assets/images/avatar.avif",
+		cover: "https://tu.520781.xyz/file/youlian/reknal.com.png",
+		desc: "共同见证奇迹诞生！",
+		siteurl: "https://reknal.com",
+		rss: "https://reknal.com/rss.xml",
+		tags: ["Blog"],
+		weight: 64, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "SkyのXnok",
+		imgurl: "https://201562.xyz/avatar.png",
+		cover: "https://tu.520781.xyz/file/youlian/201562.xyz.png",
+		desc: "记录学习、生活与思考",
+		siteurl: "https://201562.xyz",
+		rss: "https://201562.xyz/rss.xml",
+		tags: ["Blog"],
+		weight: 63, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "Serendipity",
+		imgurl: "https://blog.liuhangyv.top/upload/head-1785924834877.png",
+		cover: "https://tu.520781.xyz/file/youlian/blog.liuhangyv.top.png",
+		desc: "AI技术分享 × 行业动态 × 创新实践",
+		siteurl: "https://blog.liuhangyv.top",
+		rss: "https://blog.liuhangyv.top/rss.xml",
+		tags: ["Blog"],
+		weight: 63, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "伊linxiyy-微博客",
+		imgurl: "https://lxya.net/api/images/a7630eac-ec4b-4729-ae67-461d7a48c0d9",
+		cover: "https://tu.520781.xyz/file/youlian/lxya.net.png",
+		desc: "记录生活，分享技术，留住美好瞬间",
+		siteurl: "https://lxya.net",
+		rss: "",
+		tags: ["Blog"],
+		weight: 62, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "MmzMing的知识库",
+		imgurl: "https://i.stardots.io/784774835/StarDots-2026052116374135506.jpg",
+		cover: "https://tu.520781.xyz/file/youlian/tblog.mmzhiku.xyz.png",
+		desc: "哈基米，南北绿豆",
+		siteurl: "https://tblog.mmzhiku.xyz/",
+		rss: "https://tblog.mmzhiku.xyz/rss.xml",
+		tags: ["Blog"],
+		weight: 61, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "锦木祈杰のblog",
+		imgurl: "https://oss.qijieya.cn/1/hutao_hai.gif",
+		cover: "https://tu.520781.xyz/file/youlian/qijieya.cn.png",
+		desc: "敬....不完美的明天。",
+		siteurl: "https://qijieya.cn/",
+		rss: "https://qijieya.cn/rss.xml",
+		tags: ["Blog"],
+		weight: 60, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "Silvaire",
+		imgurl:
+			"https://wsrv.nl/?url=avatars.githubusercontent.com/u/184231508?s=400&u=0a370792ba6bbb95a04d309171b562bcd7283a0f&v=4&mask=circle",
+		cover: "https://tu.520781.xyz/file/youlian/silvaire.top.png",
+		desc: "Per Aspera Ad Astra Blog",
+		siteurl: "https://silvaire.top/",
+		rss: "",
+		tags: ["Blog"],
+		weight: 59, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "临渊羡鱼",
+		imgurl: "https://imgbed.yufish.cn/file/1786706585612_avatar.png",
+		cover: "https://tu.520781.xyz/file/youlian/x1anyu.cn.png",
+		desc: "久有羡鱼意，不甘空望川. 躬身耕岁月，步步赴清澜",
+		siteurl: "https://x1anyu.cn",
+		rss: "https://x1anyu.cn/rss.xml",
+		tags: ["Blog"],
+		weight: 58, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "EGS-blog",
+		imgurl: "https://blog.egs.cc.cd/hero/avatar.png",
+		cover: "https://tu.520781.xyz/file/youlian/blog.egs.cc.cd.png",
+		desc: "heron_i的小站",
+		siteurl: "https://blog.egs.cc.cd/",
+		rss: "https://blog.egs.cc.cd/index.xml",
+		tags: ["Blog"],
+		weight: 57, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "星空驿站 Starlight Station",
+		imgurl: "https://baiyangmu.xyz/static/favicon-96x96.png",
+		cover: "https://tu.520781.xyz/file/youlian/baiyangmu.xyz.png",
+		desc: "一座漂浮在深空中的小小驿站",
+		siteurl: "https://baiyangmu.xyz/",
+		rss: "https://baiyangmu.xyz/rss.xml",
+		tags: ["Blog"],
+		weight: 56, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "Phantomxjc",
+		imgurl: "https://avatars.githubusercontent.com/phantomxjc?v=4&s=640",
+		cover: "https://tu.520781.xyz/file/youlian/xjc.ccwu.cc.png",
+		desc: "记录个人生活和学习的一个网站。",
+		siteurl: "https://xjc.ccwu.cc",
+		rss: "https://xjc.ccwu.cc/rss.xml",
+		tags: ["Blog"],
+		weight: 55, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "RAGNote",
+		imgurl: "https://ragnote.top/Avatar.png",
+		cover: "https://tu.520781.xyz/file/youlian/agnote.top.png",
+		desc: "Life is code. I will debug it.",
+		siteurl: "https://ragnote.top/",
+		rss: "https://ragnote.top/rss.xml",
+		tags: ["Blog"],
+		weight: 54, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "清羽飞扬",
+		imgurl: "https://blog.liushen.fun/info/avatar.ico",
+		cover: "https://blog.liushen.fun/info/siteshot.jpg",
+		desc: "柳影曳曳，清酒孤灯，扬笔撒墨，心境如霜",
+		siteurl: "https://blog.liushen.fun/",
+		rss: "https://blog.liushen.fun/atom.xml",
+		tags: ["Blog"],
+		weight: 53, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "Lin Blog",
+		imgurl:
+			"https://linlog.top/api/uploads/2026/09/1788411216332767920-dca59196a965c5e8.jpg",
+		cover: "https://tu.520781.xyz/file/youlian/linlog.top.png",
+		desc: "记录技术、互联网与日常观察",
+		siteurl: "https://linlog.top/",
+		rss: "",
+		tags: ["Blog"],
+		weight: 52, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "星宇安全实验室",
+		imgurl:
+			"https://bk.zhaozhiqiang.pw/wp-content/uploads/2026/07/1784847314130_148x148.png",
+		cover: "https://tu.520781.xyz/file/youlian/bk.zhaozhiqiang.pw.png",
+		desc: "星宇安全实验室，专注网络安全技术分享，记录团队实战经历、安全研究与编程成长笔记，致力于分享网安学习干货。",
+		siteurl: "https://bk.zhaozhiqiang.pw/",
+		rss: "",
+		tags: ["Blog"],
+		weight: 51, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "You Markdown",
+		imgurl: "https://yun52.top/apilogo.png",
+		cover: "https://tu.520781.xyz/file/youlian/yun52.top.png",
+		desc: "轻量、优雅、简洁的 Markdown 在线阅读器",
+		siteurl: "https://yun52.top/",
+		rss: "https://yun52.top/rss.php",
+		tags: ["Blog"],
+		weight: 50, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "super-mortal",
+		imgurl: "https://q1.qlogo.cn/g?b=qq&nk=2169702639&s=640",
+		cover: "https://tu.520781.xyz/file/youlian/supermortal.cn.png",
+		desc: "super-mortal 技术博客：记录一个凡人程序员在 AI Agent、全栈开发与 DevOps 中的踩坑实录与开源实践，欢迎一起交流进步。",
+		siteurl: "https://supermortal.cn",
+		tags: ["Blog"],
+		weight: 49,
+		enabled: true,
+	},
+	{
+		title: "风起",
+		imgurl: "https://blog.windstart.top/_astro/avatar.BcAu2wMi_yT6PR.webp",
+		desc: "你未看此花时，此花与汝同归于寂；",
+		siteurl: "https://blog.windstart.top",
+		tags: ["Blog"],
+		weight: 48, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+		cover: "https://tu.520781.xyz/file/youlian/blog.windstart.top.png",
+		rss: "https://blog.windstart.top/rss.xml",
+	},
+	{
+		title: "左沐の手册",
+		imgurl:
+			"https://tu.mstzuomu.space/file/%E5%A4%B4%E5%83%8F/1786942479049_azumahead.jpg",
+		desc: "热爱是拯救无趣人生的唯一途径",
+		siteurl: "https://azuma.mstzuomu.space/",
+		tags: [],
+		weight: 47,
+		enabled: true,
+		cover: "https://tu.520781.xyz/file/youlian/azuma.mstzuomu.space.png",
+		rss: "https://azuma.mstzuomu.space/rsd.xml",
+	},
+	{
+		title: "折腾进行时",
+		imgurl:
+			"https://weavatar.com/api/avatar/e3298b871864a7a21690863f8c930754a36cb5c6f0b105f4b5d4737bfd219f57?s=2000&t=1783684315863",
+		desc: "生命不息，折腾不止",
+		siteurl: "https://www.9ll.uk/",
+		tags: ["Blog"],
+		weight: 46,
+		enabled: true,
+		cover: "https://tu.520781.xyz/file/youlian/www.9ll.uk.png",
+		rss: "https://www.9ll.uk/rss.xml",
+	},
+	{
+		title: "朝朝听雨",
+		imgurl: "https://rainzt.cn/zzty.png",
+		cover: "https://tu.520781.xyz/file/youlian/rainzt.cn.png",
+		desc: "物物而不物于物，念念而不念于念",
+		siteurl: "http://rainzt.cn",
+		rss: "https://rainzt.cn/rss.xml",
+		tags: ["Blog"],
+		weight: 45,
+		enabled: true,
+	},
+	{
+		title: "HZH",
+		imgurl: "https://clannad.top/favicon.png",
+		desc: "Welcome to HZH",
+		siteurl: "https://clannad.top/",
+		tags: [],
+		weight: 44,
+		enabled: true,
+		cover: "https://tu.520781.xyz/file/youlian/clannad.top.png",
+		rss: "https://clannad.top/feed.xml",
+	},
+	{
+		title: "YuJing的记忆终端",
+		imgurl: "https://yujingblog.top/assets/home/avatar.webp",
+		desc: "记一些无用的日常，和有光的时刻。",
+		siteurl: "https://yujingblog.top/",
+		tags: [],
+		weight: 43,
+		enabled: true,
+		cover: "https://tu.520781.xyz/file/youlian/yujingblog.top.png",
+		rss: "https://yujingblog.top/atom.xml",
+	},
+	{
+		title: "zuige's blog",
+		imgurl: "https://blog.zuiges.com/img/avatar.jpg",
+		cover: "https://tu.520781.xyz/file/youlian/blog.zuiges.com.png",
+		desc: "嵌入式开发 玩机折腾 技术随手记的小博客",
+		siteurl: "https://blog.zuiges.com",
+		rss: "https://blog.zuiges.com/atom.xml",
+		tags: ["Blog"],
+		weight: 42,
+		enabled: true,
+	},
+	{
+		title: "DW博客",
+		imgurl: "https://www.dwancc.cn/assets/images/6ac7991353b46.jpg",
+		cover: "https://tu.520781.xyz/file/youlian/www.dwancc.cn.png",
+		desc: "欢迎来到我的个人主页",
+		siteurl: "https://www.dwancc.cn",
+		tags: ["Blog"],
+		weight: 41,
+		enabled: true,
+	},
+	{
+		title: "yikuae の 小站",
+		imgurl: "https://www.yikuae.top/avatar.jpg",
+		cover: "https://tu.520781.xyz/file/youlian/www.yikuae.top.png",
+		desc: "辞江寄晓序，承烬赴星遐",
+		siteurl: "https://www.yikuae.top",
+		tags: ["Blog"],
+		weight: 40,
+		enabled: true,
+	},
+];

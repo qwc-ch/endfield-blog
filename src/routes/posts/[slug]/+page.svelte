@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Comment from '#lib/components/Comment.svelte';
 	import Records from '#lib/components/Records.svelte';
 	import Tri from '#lib/components/Tri.svelte';
 	import { catId, formatNo, formatNumber, formatPostDate, getPost, type Post } from '#lib/posts';
@@ -86,6 +87,12 @@
 				<Records posts={adjacent} />
 			</section>
 		{/if}
+
+		<section class="comments">
+			<h2 class="ef-pair"><span class="ef-eyebrow">Comments</span><span>评论</span></h2>
+			<!-- path 沿用旧博客（Firefly）的格式：/posts/文件名，不带尾斜杠，老评论才能对上 -->
+			<Comment path={'/posts/' + data.slug} />
+		</section>
 	</article>
 
 	<aside class="ef-margin">
@@ -143,6 +150,12 @@
 	}
 	.nearby h2 {
 		margin: 0 0 0.75rem;
+	}
+	.comments {
+		margin-top: 3rem;
+	}
+	.comments h2 {
+		margin: 0 0 1rem;
 	}
 
 	/* 页边的目录：正在读的那节用当前位置色线标出 */
