@@ -1,0 +1,28 @@
+{
+	"extends": "$app/tsconfig",
+	"compilerOptions": {
+		"strict": true,
+		"paths": {
+			"#lib": [
+				"./src/lib/index.ts"
+			],
+			"#lib/*": [
+				"./src/lib/*"
+			],
+			"#config": [
+				"./src/config/index.ts"
+			],
+			"#config/*": [
+				"./src/config/*"
+			]
+		}
+	},
+	"include": [
+		"src",
+		"vite.config.ts"
+	],
+	"exclude": [
+		"src/lib/fx.js",
+		"src/lib/styles/contours/draw-contours.mjs"
+	]
+}

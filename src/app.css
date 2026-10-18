@@ -1,0 +1,44 @@
+/*
+	全局样式入口。
+	- 布局用 Tailwind 工具类（spacing、grid、断点）
+	- 颜色、字、部件全部走 endfield 套件（ef- 类和 --ef-* 变量）
+	- 套件文件在 +layout.svelte 里单独引入，保证它在 Tailwind 之后生效
+*/
+@import 'tailwindcss';
+
+@theme inline {
+	/* 套件的颜色 token，直接映射成 Tailwind 颜色 */
+	--color-paper: var(--ef-paper);
+	--color-panel: var(--ef-panel);
+	--color-ink: var(--ef-ink);
+	--color-ink-2: var(--ef-ink-2);
+	--color-rule: var(--ef-rule);
+	--color-chip: var(--ef-chip);
+	--color-signal: var(--ef-signal);
+	--color-trace: var(--ef-trace);
+
+	--font-ui: var(--ef-font-ui);
+	--font-text: var(--ef-font-text);
+
+	/* 这套风格没有圆角和投影：把这两组工具类整个禁用 */
+	--radius-*: initial;
+	--shadow-*: initial;
+}
+
+/* mdsvex 生成的代码块（套件只管了行内 code） */
+.ef-prose pre {
+	margin: 1.2em 0;
+	padding: 0.9em 1.1em;
+	border: 1px solid var(--ef-rule);
+	background: var(--ef-paper);
+	overflow-x: auto;
+	font-family: var(--ef-font-mono);
+	font-size: 0.86em;
+	line-height: 1.7;
+}
+.ef-prose pre code {
+	padding: 0;
+	border: 0;
+	background: none;
+	font-size: inherit;
+}

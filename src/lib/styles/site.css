@@ -1,0 +1,21 @@
+/*
+	站点级覆盖：必须在 endfield.css 之后加载（+layout.svelte 里控制顺序）。
+	只放"这个站对套件的微调"，每条写清楚为什么。
+*/
+
+/* 字标是中文站名：套件的行高 0.84 按拉丁大写调的，汉字墨迹超出行框，
+   顶和底会被入场动画留下的裁切切掉。放宽行高，给汉字留完整空间。 */
+.ef-wordmark,
+.ef-wordmark > * {
+	line-height: 1.1;
+}
+
+/* 铭牌收进画框：套件默认向左伸出画框 1.25rem，首屏里显得太偏，
+   手机上会顶到屏幕边；同时把字号收紧（默认继承了正文字号，偏大）。 */
+.ef-frame .ef-plate {
+	left: 0.75rem;
+	bottom: 0.75rem;
+	max-width: 86%;
+	padding: 0.45rem 1.1rem 0.5rem 0.75rem;
+	font-size: 0.8125rem;
+}

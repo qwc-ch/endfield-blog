@@ -1,0 +1,33 @@
+<!doctype html>
+<!--
+	变体卡（只在这里设置一次，别处不再改颜色）：
+	standard（yellow / neutral / standard / contours / standard / full）
+	主视觉：首页大字标 + 最新文章的编号画框；编号、字数、天数都来自真实文章数据
+	页面类型：首页展示，其余阅读
+-->
+<html
+	lang="zh-CN"
+	data-ef-accent="yellow"
+	data-ef-paper="neutral"
+	data-ef-cut="standard"
+	data-ef-ground="contours"
+>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
+		<!-- 先恢复上次选的深浅，避免闪一下错误的底色 -->
+		<script>
+			try {
+				const t = localStorage.getItem('theme');
+				if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+			} catch {}
+		</script>
+		<meta name="theme-color" content="#f4f4f2" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#191919" media="(prefers-color-scheme: dark)" />
+		%sveltekit.head%
+	</head>
+	<body class="ef ef-contours" data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
