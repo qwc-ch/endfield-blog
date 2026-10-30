@@ -56,7 +56,8 @@
 /* ============================================================
  * 二、暗色模式：提高对比度
  * ============================================================ */
-html.dark [data-waline] {
+/* 本站的暗色开关是 <html data-theme="dark">（Endfield 套件），不是 html.dark */
+html[data-theme='dark'] [data-waline] {
   --waline-color: color-mix(in oklch, var(--card-bg) 8%, #fff 92%);
   --waline-dark-grey: color-mix(in oklch, var(--card-bg) 15%, #ddd 85%);
   --waline-light-grey: color-mix(in oklch, var(--card-bg) 35%, #aaa 65%);
@@ -254,7 +255,7 @@ body.wallpaper-transparent [data-waline] {
 }
 
 /* 全屏透明 + 暗色 */
-html.dark body.wallpaper-transparent [data-waline] {
+html[data-theme='dark'] body.wallpaper-transparent [data-waline] {
   --waline-bg-color: var(--card-bg-transparent, rgba(23, 23, 23, 0.6));
   --waline-color: color-mix(in oklch, var(--card-bg) 8%, #fff 92%);
   --waline-info-color: color-mix(in oklch, var(--card-bg) 35%, #aaa 65%);
