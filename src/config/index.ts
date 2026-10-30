@@ -4,6 +4,8 @@ import { profileConfig } from './profileConfig';
 import { navConfig } from './navConfig';
 import { postConfig } from './postConfig';
 import { footerConfig } from './footerConfig';
+import { licenseConfig } from './licenseConfig';
+import { announcementConfig } from './announcementConfig';
 import { friendsConfig } from './friendsConfig';
 import { commentConfig } from './commentConfig';
 import { guestbookConfig } from './guestbookConfig';
@@ -16,6 +18,8 @@ export {
 	navConfig,
 	postConfig,
 	footerConfig,
+	licenseConfig,
+	announcementConfig,
 	friendsConfig,
 	commentConfig,
 	guestbookConfig,

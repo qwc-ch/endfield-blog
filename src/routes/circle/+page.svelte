@@ -4,6 +4,7 @@
 	import { siteConfig } from '#config';
 	import { formatPostDate } from '#lib/posts';
 	import Built from '#lib/components/Built.svelte';
+	import Seo from '#lib/components/Seo.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -28,10 +29,11 @@
 	}
 </script>
 
-<svelte:head>
-	<title>朋友圈 · {siteConfig.title}</title>
-	<meta name="description" content="友链们最近在写什么，共收录 {articles.length} 篇。" />
-</svelte:head>
+<Seo
+	title="朋友圈"
+	description="友链们最近在写什么，共收录 {articles.length} 篇。"
+	path="/circle/"
+/>
 
 <div class="ef-spread">
 	<section class="ef-sheet">

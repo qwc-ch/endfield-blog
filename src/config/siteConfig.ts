@@ -10,6 +10,8 @@ export const siteConfig = {
 	subtitle: '欢迎来到我的小破站',
 	/** 站点描述，用在 <meta> 和 RSS 里 */
 	description: '年华的个人博客，在这里分享生活和技术。',
+	/** SEO 关键词，写进 <meta name="keywords">；文章页会再并上该文的标签 */
+	keywords: ['年华', '年华的博客', '年华的小破站', '技术博客', '生活', 'SvelteKit', '静态博客', 'ACGN'],
 	/** 站点地址，结尾不带斜杠 */
 	url: 'https://blog.amamo.top',
 	/** 建站日期，用于"运行天数" */

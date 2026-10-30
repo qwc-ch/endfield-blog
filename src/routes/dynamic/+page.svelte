@@ -7,6 +7,7 @@
 	import { dynamicConfig, profileConfig, siteConfig } from '#config';
 	import { marked } from 'marked';
 	import Built from '#lib/components/Built.svelte';
+	import Seo from '#lib/components/Seo.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -183,10 +184,7 @@
 		d.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
 </script>
 
-<svelte:head>
-	<title>动态 · {siteConfig.title}</title>
-	<meta name="description" content="{siteConfig.title}的动态与随手记。" />
-</svelte:head>
+<Seo title="动态" description="{siteConfig.title}的动态与随手记。" path="/dynamic/" />
 
 <svelte:window onkeydown={onViewerKey} />
 

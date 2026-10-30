@@ -6,6 +6,7 @@
 	import { courses, periods, semester, type Course, type WeekRule } from '#lib/timetable';
 	import { siteConfig } from '#config';
 	import Built from '#lib/components/Built.svelte';
+	import Seo from '#lib/components/Seo.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -142,10 +143,11 @@
 	);
 </script>
 
-<svelte:head>
-	<title>课程表 · {siteConfig.title}</title>
-	<meta name="description" content="{semester.term} · {semester.startDate} 起，共 {semester.totalWeeks} 周。" />
-</svelte:head>
+<Seo
+	title="课程表"
+	description="{semester.term} · {semester.startDate} 起，共 {semester.totalWeeks} 周。"
+	path="/timetable/"
+/>
 
 <div class="ef-spread">
 	<section class="ef-sheet">

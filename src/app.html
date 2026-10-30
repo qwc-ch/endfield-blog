@@ -17,11 +17,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/png" href="%sveltekit.assets%/f.png" />
 		<link rel="apple-touch-icon" href="%sveltekit.assets%/f.png" />
-		<!-- 先恢复上次选的深浅，避免闪一下错误的底色 -->
+		<!-- 先恢复上次选的深浅，避免闪一下错误的底色；公告关过的话一并记下 -->
 		<script>
 			try {
 				const t = localStorage.getItem('theme');
 				if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+				if (localStorage.getItem('announcement') === 'hidden')
+					document.documentElement.dataset.announcement = 'hidden';
 			} catch {}
 		</script>
 		<meta name="theme-color" content="#f4f4f2" media="(prefers-color-scheme: light)" />

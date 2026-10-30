@@ -2,8 +2,9 @@
 	import Records from '#lib/components/Records.svelte';
 	import Ticker from '#lib/components/Ticker.svelte';
 	import Built from '#lib/components/Built.svelte';
+	import Seo from '#lib/components/Seo.svelte';
 	import { categoryList, catId, formatNo, formatNumber, formatPostDate, posts, totalWords } from '#lib/posts';
-	import { siteConfig } from '#config';
+	import { profileConfig, siteConfig } from '#config';
 	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 
@@ -12,6 +13,28 @@
 	const latest = $derived(posts[0]);
 	const latestNo = $derived(latest ? String(latest.no).padStart(3, '0') : '000');
 
+	// 首页的结构化数据：站点 + 作者
+	const base = siteConfig.url.replace(/\/$/, '');
+	const ld = [
+		{
+			'@type': 'WebSite',
+			'@id': `${base}/#website`,
+			url: `${base}/`,
+			name: siteConfig.title,
+			description: siteConfig.description,
+			inLanguage: 'zh-CN',
+			author: { '@id': `${base}/#person` }
+		},
+		{
+			'@type': 'Person',
+			'@id': `${base}/#person`,
+			name: profileConfig.name,
+			url: `${base}/about/`,
+			image: profileConfig.avatar,
+			sameAs: profileConfig.links.map((l) => l.url).filter((u) => u.startsWith('http'))
+		}
+	];
+
 	onMount(async () => {
 		const { wireParallax, wireReadouts } = await import('#lib/fx');
 		wireReadouts(document);
@@ -19,10 +42,7 @@
 	});
 </script>
 
-<svelte:head>
-	<title>{siteConfig.title}</title>
-	<meta name="description" content={siteConfig.description} />
-</svelte:head>
+<Seo path="/" jsonLd={ld} />
 
 <section class="hero" data-hero>
 	<p class="meta ef-field">

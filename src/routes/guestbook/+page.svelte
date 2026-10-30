@@ -5,16 +5,14 @@
 	import '#lib/styles/guestbook-chat.css';
 	import Chat from '#lib/components/guestbook/Chat.svelte';
 	import Built from '#lib/components/Built.svelte';
+	import Seo from '#lib/components/Seo.svelte';
 	import { siteConfig } from '#config';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
 </script>
 
-<svelte:head>
-	<title>留言 · {siteConfig.title}</title>
-	<meta name="description" content="给{siteConfig.title}留句话。" />
-</svelte:head>
+<Seo title="留言" description="给{siteConfig.title}留句话。" path="/guestbook/" />
 
 <div class="ef-spread gb-spread">
 	<section class="ef-sheet">

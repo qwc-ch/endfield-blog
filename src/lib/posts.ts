@@ -110,6 +110,9 @@ export const totalWords = posts.reduce((s, p) => s + p.words, 0);
 /** 分类名 → URL 里用的编码 */
 export const catId = (name: string) => encodeURIComponent(name);
 
+/** 文章 slug → 站内地址（中文要编码，canonical 用得上） */
+export const postPath = (slug: string) => `/posts/${encodeURIComponent(slug)}/`;
+
 /** 按年分组（传入的列表需已按新的在前排序） */
 export function groupByYear(list: Post[]): { year: number; posts: Post[] }[] {
 	const out: { year: number; posts: Post[] }[] = [];

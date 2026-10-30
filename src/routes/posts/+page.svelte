@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Records from '#lib/components/Records.svelte';
 	import Built from '#lib/components/Built.svelte';
+	import Seo from '#lib/components/Seo.svelte';
 	import { categoryList, catId, formatNumber, formatPostDate, groupByYear, posts, totalWords } from '#lib/posts';
 	import { siteConfig } from '#config';
 	import type { PageData } from './$types';
@@ -12,10 +13,11 @@
 	const last = $derived(posts[0]);
 </script>
 
-<svelte:head>
-	<title>文章 · {siteConfig.title}</title>
-	<meta name="description" content="全部文章，按发布时间排，最新的在最前面。" />
-</svelte:head>
+<Seo
+	title="文章"
+	description="全部文章，按发布时间排，最新的在最前面。"
+	path="/posts/"
+/>
 
 <div class="ef-spread">
 	<section class="ef-sheet">

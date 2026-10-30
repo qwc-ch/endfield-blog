@@ -10,6 +10,7 @@
 	import ThemeToggle from '#lib/components/ThemeToggle.svelte';
 	import Tri from '#lib/components/Tri.svelte';
 	import Analytics from '#lib/components/Analytics.svelte';
+	import Announcement from '#lib/components/Announcement.svelte';
 	import { footerConfig, profileConfig, siteConfig } from '#config';
 	import { posts } from '#lib/posts';
 	import type { LayoutData } from './$types';
@@ -75,6 +76,7 @@
 	</div>
 
 	<div class="main">
+		<Announcement />
 		{@render children()}
 
 		<footer class="foot">
@@ -92,6 +94,11 @@
 				<li><a href="/rss.xml">RSS</a></li>
 			</ul>
 			<p class="ef-field note">{footerConfig.note}</p>
+			{#if footerConfig.icp.text && footerConfig.icp.url}
+				<p class="ef-field note">
+					<a href={footerConfig.icp.url} target="_blank" rel="noopener noreferrer nofollow">{footerConfig.icp.text}</a>
+				</p>
+			{/if}
 		</footer>
 	</div>
 </div>
@@ -154,8 +161,9 @@
 		flex-direction: column;
 		min-width: 0;
 	}
-	/* 让页面内容撑开，页脚贴在底部 */
-	.main > :global(:first-child) {
+	/* 让页面内容撑开，页脚贴在底部；公告条排在内容前面，不参与撑开 */
+	.main > :global(.ef-spread),
+	.main > :global(.hero) {
 		flex: 1;
 	}
 	.foot {

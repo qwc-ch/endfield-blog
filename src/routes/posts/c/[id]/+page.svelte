@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Built from '#lib/components/Built.svelte';
 	import Records from '#lib/components/Records.svelte';
+	import Seo from '#lib/components/Seo.svelte';
 	import { categoryList, catId, formatNumber, formatPostDate, groupByYear, posts, totalWords } from '#lib/posts';
 	import { siteConfig } from '#config';
 	import type { PageData } from './$types';
@@ -11,10 +12,11 @@
 	const groups = $derived(groupByYear(list));
 </script>
 
-<svelte:head>
-	<title>{data.category} · 文章 · {siteConfig.title}</title>
-	<meta name="description" content="分类「{data.category}」下的全部文章，共 {list.length} 篇。" />
-</svelte:head>
+<Seo
+	title="{data.category} · 文章"
+	description="分类「{data.category}」下的全部文章，共 {list.length} 篇。"
+	path="/posts/c/{catId(data.category)}/"
+/>
 
 <div class="ef-spread">
 	<section class="ef-sheet">

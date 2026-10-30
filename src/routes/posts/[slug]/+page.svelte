@@ -3,8 +3,9 @@
 	import Comment from '#lib/components/Comment.svelte';
 	import Records from '#lib/components/Records.svelte';
 	import Tri from '#lib/components/Tri.svelte';
-	import { catId, formatNo, formatNumber, formatPostDate, getPost, type Post } from '#lib/posts';
-	import { siteConfig } from '#config';
+	import Seo from '#lib/components/Seo.svelte';
+	import { catId, formatNo, formatNumber, formatPostDate, getPost, postPath, type Post } from '#lib/posts';
+	import { licenseConfig, profileConfig, siteConfig } from '#config';
 	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 
@@ -16,6 +17,42 @@
 	const adjacent = $derived(
 		[data.next, data.prev].filter((s): s is string => Boolean(s)).map((s) => getPost(s)!).filter(Boolean)
 	);
+
+	// 结构化数据：文章本体 + 面包屑（首页 / 分类 / 文章）
+	const base = siteConfig.url.replace(/\/$/, '');
+	const articleUrl = $derived(base + postPath(post.slug));
+	const ld = $derived([
+		{
+			'@type': 'BlogPosting',
+			'@id': `${articleUrl}#article`,
+			headline: post.title,
+			description: post.description,
+			datePublished: post.published,
+			dateModified: post.updated ?? post.published,
+			inLanguage: 'zh-CN',
+			articleSection: post.category,
+			keywords: post.tags.join(','),
+			wordCount: post.words,
+			url: articleUrl,
+			mainEntityOfPage: articleUrl,
+			author: { '@type': 'Person', name: profileConfig.name, url: `${base}/about/` },
+			publisher: { '@type': 'Organization', name: siteConfig.title, url: `${base}/` },
+			isPartOf: { '@type': 'Blog', name: siteConfig.title, url: `${base}/posts/` }
+		},
+		{
+			'@type': 'BreadcrumbList',
+			itemListElement: [
+				{ '@type': 'ListItem', position: 1, name: '首页', item: `${base}/` },
+				{
+					'@type': 'ListItem',
+					position: 2,
+					name: post.category,
+					item: `${base}/posts/c/${catId(post.category)}/`
+				},
+				{ '@type': 'ListItem', position: 3, name: post.title }
+			]
+		}
+	]);
 
 	interface Heading {
 		id: string;
@@ -46,10 +83,17 @@
 	});
 </script>
 
-<svelte:head>
-	<title>{post.title} · {siteConfig.title}</title>
-	<meta name="description" content={post.description} />
-</svelte:head>
+<Seo
+	title={post.title}
+	description={post.description}
+	path={postPath(post.slug)}
+	type="article"
+	published={post.published}
+	updated={post.updated}
+	tags={post.tags}
+	section={post.category}
+	jsonLd={ld}
+/>
 
 <div class="ef-spread">
 	<article class="ef-sheet">
@@ -81,6 +125,23 @@
 		<div class="ef-prose">
 			<Comp />
 		</div>
+
+		{#if licenseConfig.enabled}
+			<section class="license" aria-label="版权">
+				<p class="head">
+					<span class="ef-eyebrow slash">License</span>
+					<span class="ef-field">版权</span>
+				</p>
+				<p class="body">
+					本文《{post.title}》由 <a href="/about/">{profileConfig.name}</a> 写，按 <a
+						href={licenseConfig.url}
+						target="_blank"
+						rel="noopener noreferrer">{licenseConfig.name}</a
+					> 协议发布。{licenseConfig.note}
+				</p>
+				<p class="ef-field src"><a href={articleUrl}>{articleUrl}</a></p>
+			</section>
+		{/if}
 
 		{#if adjacent.length}
 			<section class="nearby">
@@ -146,6 +207,41 @@
 	}
 	.ef-prose {
 		margin-top: 2rem;
+	}
+	/* 版权卡片：正文读完的收尾，一块安静纸色 + 一道墨线，不抢正文 */
+	.license {
+		margin-top: 2.5rem;
+		padding: 0.9rem 1.1rem;
+		background: var(--ef-chip);
+		border-left: 3px solid var(--ef-ink);
+	}
+	.license .head {
+		display: flex;
+		align-items: baseline;
+		gap: 0.5rem;
+		margin: 0 0 0.35rem;
+	}
+	.license .body {
+		margin: 0;
+		max-width: var(--ef-measure);
+		font-size: 0.9375rem;
+		line-height: 1.75;
+		color: var(--ef-ink-2);
+	}
+	.license .src {
+		margin: 0.4rem 0 0;
+		word-break: break-all;
+	}
+	.license a {
+		color: inherit;
+		text-decoration: underline;
+		text-decoration-color: var(--ef-signal);
+		text-decoration-thickness: 0.35em;
+		text-underline-offset: -0.16em;
+		text-decoration-skip-ink: none;
+	}
+	.license a:hover {
+		color: var(--ef-ink);
 	}
 	.nearby {
 		margin-top: 3rem;

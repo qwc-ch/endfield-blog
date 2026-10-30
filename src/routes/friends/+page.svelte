@@ -3,6 +3,7 @@
 	// 悬停展开站点封面；搜索和标签筛选的逻辑改用 Svelte 状态实现。
 	import Comment from '#lib/components/Comment.svelte';
 	import Built from '#lib/components/Built.svelte';
+	import Seo from '#lib/components/Seo.svelte';
 	import { friendsConfig, profileConfig, siteConfig } from '#config';
 	import type { PageData } from './$types';
 
@@ -33,10 +34,7 @@
 	const tagCount = (t: string) => list.filter((f) => (f.tags ?? []).includes(t)).length;
 </script>
 
-<svelte:head>
-	<title>友链 · {siteConfig.title}</title>
-	<meta name="description" content="朋友们的主页，共 {list.length} 个。" />
-</svelte:head>
+<Seo title="友链" description="朋友们的主页，共 {list.length} 个。" path="/friends/" />
 
 <div class="ef-spread">
 	<section class="ef-sheet">

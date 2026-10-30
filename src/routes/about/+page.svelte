@@ -2,16 +2,14 @@
 	import { posts, categoryList, totalWords } from '#lib/posts';
 	import { profileConfig, siteConfig } from '#config';
 	import Built from '#lib/components/Built.svelte';
+	import Seo from '#lib/components/Seo.svelte';
 	import type { PageData } from './$types';
 
 	// deployTarget 由根布局的 +layout.server.ts 在预渲染（构建）时识别好
 	let { data }: { data: PageData } = $props();
 </script>
 
-<svelte:head>
-	<title>关于 · {siteConfig.title}</title>
-	<meta name="description" content={profileConfig.bio} />
-</svelte:head>
+<Seo title="关于" description={profileConfig.bio} path="/about/" />
 
 <div class="ef-spread">
 	<section class="ef-sheet">

@@ -4,6 +4,7 @@
 	import { STATUS_WORDS, bgmDate, fetchAllCategories, sortItems } from '#lib/bangumi';
 	import { siteConfig } from '#config';
 	import Built from '#lib/components/Built.svelte';
+	import Seo from '#lib/components/Seo.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -25,10 +26,7 @@
 	});
 </script>
 
-<svelte:head>
-	<title>番组计划 · {siteConfig.title}</title>
-	<meta name="description" content="{siteConfig.title}在 Bangumi 的收藏。" />
-</svelte:head>
+<Seo title="番组计划" description="{siteConfig.title}在 Bangumi 的收藏。" path="/bangumi/" />
 
 <div class="ef-spread">
 	<section class="ef-sheet">
