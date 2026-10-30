@@ -55,7 +55,14 @@ draft: true              # 可选，true 不会构建
 
 ## 迁移旧文章
 
-步骤写在《怎么把 Firefly 的文章搬过来》这篇示例文章里（构建后访问 `/posts/` 能看到）。
+旧博客在 `/home/qwc/Firefly/src/content/posts/`（跳过 `guide/`，那是主题自带示例）。搬一篇文章：
+
+1. markdown 复制进 `src/content/posts/`，**文件名就是 URL**（`foo.md` → `/posts/foo/`）；
+2. frontmatter 只留新站认的字段：`title`/`published`/`updated`/`description`/`tags`/`category`/`draft`，`image`、`author`、`lang` 这些丢掉；
+3. 旧文里的 `./images/x.png` 拷到 `static/posts/<文件名>/`，正文路径改成 `/posts/<文件名>/x.png`；
+4. `category` 有多个时只取主分类。
+
+编号、字数、分类计数都按 `published` 重新算，不用改任何 `No.`。
 
 ## 样式在哪改
 

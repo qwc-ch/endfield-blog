@@ -745,6 +745,24 @@ a.ef-record:is(:hover, :focus-visible) > * {
   border-left: 3px solid var(--ef-ink);
   color: var(--ef-ink-2);
 }
+/* Tailwind's reset strips list markers; reading prose needs them back
+   (the migrated posts lean on bullets and numbered steps). */
+.ef-prose :is(ul, ol) {
+  margin: 1em 0;
+  padding-left: 1.5em;
+}
+.ef-prose ul {
+  list-style: disc;
+}
+.ef-prose ol {
+  list-style: decimal;
+}
+.ef-prose li {
+  margin: 0.3em 0;
+}
+.ef-prose li::marker {
+  color: var(--ef-ink-2);
+}
 .ef-prose code {
   font-family: var(--ef-font-mono);
   font-size: 0.86em;

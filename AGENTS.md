@@ -24,7 +24,7 @@ Personal static blog: SvelteKit 5 + Vite 8 + Tailwind 4 + mdsvex. Everything is 
 
 ## Content and comments
 
-- Frontmatter and migration details are in `README.md` plus the in-repo posts `2026-10-17-这套界面的规则速查.md` and `2026-10-18-怎么把-Firefly-的文章搬过来.md`. Post images go under `static/posts/<slug>/`.
+- Frontmatter and migration details are in `README.md` (the "迁移旧文章" section). The blog's posts were migrated from `/home/qwc/Firefly`; the filename is the URL slug. Post images go under `static/posts/<slug>/`.
 - Preserve Waline `path` identities: posts use `/posts/<slug>` (no trailing slash), dynamic items use `/dynamic/<id>/`, guestbook uses `/guestbook/`. Changing them orphans old comments.
 - User-facing copy is Chinese; keep new UI text in Chinese.
 
