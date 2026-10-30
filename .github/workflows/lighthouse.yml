@@ -43,11 +43,3 @@ jobs:
           configPath: ./lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: true
-
-      # 把 HTML 报告存成 artifact，方便点开看明细
-      - name: Upload Lighthouse report artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: lighthouse-report
-          path: .lighthouseci
