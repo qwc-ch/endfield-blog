@@ -29,6 +29,11 @@
 			</div>
 		</figure>
 
+		<!-- 旧站（Firefly）关于页里的自我介绍，原样搬过来 -->
+		<p>
+			Hello,everyone！我是{profileConfig.name}，一个喜欢折腾的开发者，也是每天库库刷题的初中学生。
+		</p>
+
 		<p>
 			这里是{profileConfig.name}的博客：{siteConfig.description}
 			文章按发布顺序编号，改过的重要勘误会标在文章字段里。
