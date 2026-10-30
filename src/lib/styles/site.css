@@ -19,3 +19,19 @@
 	padding: 0.45rem 1.1rem 0.5rem 0.75rem;
 	font-size: 0.8125rem;
 }
+
+/* 纸面透底：阅读页不再垫整块板色，让 body 上的等高线（.ef-contours）透出来，
+   每个页面都带背景质感；栏界仍由 .ef-sheet 保留的细线负责。
+   正文压在 9% 墨色的等高线上，对比度不受影响。 */
+.ef-sheet {
+	background: transparent;
+}
+
+/* Waline 变量桥：waline-custom.css 沿用 Firefly 的变量名，
+   文章页/动态页的评论区在 .guestbook-page 作用域之外，拿不到留言页那组映射，
+   在 :root 补同名映射（值与 guestbook-chat.css 的桥一致，两处并存不冲突）。 */
+:root {
+	--card-bg: var(--ef-panel);
+	--primary: var(--ef-ink);
+	--line-divider: var(--ef-rule);
+}

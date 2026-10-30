@@ -13,7 +13,12 @@
 //
 //   import { wireReadouts, wireTheme } from './fx.js'; wireReadouts(); wireTheme();
 
-const still = matchMedia('(prefers-reduced-motion: reduce)');
+// SvelteKit 预渲染在 Node 里跑，没有 matchMedia：这里兜一个“当作要减少动效”的假对象，
+// 浏览器里行为不变（组件只会在 onMount 里调用这些函数）。
+const still =
+	typeof matchMedia === 'function'
+		? matchMedia('(prefers-reduced-motion: reduce)')
+		: { matches: true };
 const running = new WeakMap();
 const MECH = 'cubic-bezier(0.7, 0, 0.2, 1)';
 const SNAP = 'cubic-bezier(0.16, 1, 0.3, 1)';

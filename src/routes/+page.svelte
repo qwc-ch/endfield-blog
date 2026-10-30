@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Records from '#lib/components/Records.svelte';
 	import Ticker from '#lib/components/Ticker.svelte';
+	import Built from '#lib/components/Built.svelte';
 	import { categoryList, catId, formatNo, formatNumber, formatPostDate, posts, totalWords } from '#lib/posts';
 	import { siteConfig } from '#config';
 	import { onMount } from 'svelte';
@@ -81,6 +82,7 @@
 				</li>
 			{/each}
 		</ul>
+		<Built target={data.deployTarget} />
 	</aside>
 </section>
 

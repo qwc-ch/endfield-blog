@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Built from '#lib/components/Built.svelte';
 	import Records from '#lib/components/Records.svelte';
 	import { categoryList, catId, formatNumber, formatPostDate, groupByYear, posts, totalWords } from '#lib/posts';
 	import { siteConfig } from '#config';
@@ -54,6 +55,7 @@
 				<li><span>最新一篇</span><span class="ef-field">{formatPostDate(list[0].published)}</span></li>
 			{/if}
 		</ul>
+		<Built target={data.deployTarget} />
 	</aside>
 </div>
 

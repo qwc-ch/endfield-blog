@@ -1,7 +1,11 @@
 <script lang="ts">
 	import Records from '#lib/components/Records.svelte';
+	import Built from '#lib/components/Built.svelte';
 	import { categoryList, catId, formatNumber, formatPostDate, groupByYear, posts, totalWords } from '#lib/posts';
 	import { siteConfig } from '#config';
+	import type { PageData } from './$types';
+
+	let { data }: { data: PageData } = $props();
 
 	const groups = $derived(groupByYear(posts));
 	const first = $derived(posts.at(-1));
@@ -61,6 +65,7 @@
 				</li>
 			{/each}
 		</ul>
+		<Built target={data.deployTarget} />
 	</aside>
 </div>
 

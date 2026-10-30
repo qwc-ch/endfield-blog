@@ -8,6 +8,7 @@ import type { LayoutLoad } from './$types';
 export const prerender = true;
 export const trailingSlash = 'always';
 
-export const load: LayoutLoad = () => {
-	return { days: daysSince(siteConfig.since) };
+export const load: LayoutLoad = ({ data }) => {
+	// data 里有 +layout.server.ts 的 deployTarget，透传下去
+	return { ...data, days: daysSince(siteConfig.since) };
 };

@@ -13,7 +13,7 @@ export interface GuestbookConfig {
 }
 
 export const guestbookConfig: GuestbookConfig = {
-announcements: [
+	announcements: [
 		{
 			id: "comment-and-message-rules",
 			title: "评论及留言规则",

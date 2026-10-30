@@ -1,6 +1,11 @@
 <script lang="ts">
 	import { posts, categoryList, totalWords } from '#lib/posts';
 	import { profileConfig, siteConfig } from '#config';
+	import Built from '#lib/components/Built.svelte';
+	import type { PageData } from './$types';
+
+	// deployTarget 由根布局的 +layout.server.ts 在预渲染（构建）时识别好
+	let { data }: { data: PageData } = $props();
 </script>
 
 <svelte:head>
@@ -48,13 +53,7 @@
 			<li><span>字数</span><span class="ef-field">{totalWords.toLocaleString('en-US')} 字</span></li>
 		</ul>
 
-		<h2 class="ef-pair mid"><span class="ef-eyebrow">Built</span><span>构建</span></h2>
-		<ul class="ef-ledger">
-			<li><span>框架</span><span class="ef-field">SvelteKit（Vite）</span></li>
-			<li><span>样式</span><span class="ef-field">Tailwind CSS</span></li>
-			<li><span>字体</span><span class="ef-field">Saira / 思源黑体</span></li>
-			<li><span>部署</span><span class="ef-field">静态导出</span></li>
-		</ul>
+		<Built target={data.deployTarget} />
 	</aside>
 </div>
 
@@ -67,8 +66,5 @@
 		height: 16rem;
 		max-width: 22rem;
 		margin-top: 2rem;
-	}
-	.ef-margin :global(.mid) {
-		margin-top: 2.5rem;
 	}
 </style>

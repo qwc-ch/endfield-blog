@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Built from '#lib/components/Built.svelte';
 	import Comment from '#lib/components/Comment.svelte';
 	import Records from '#lib/components/Records.svelte';
 	import Tri from '#lib/components/Tri.svelte';
@@ -122,6 +123,7 @@
 			<li><span>字数</span><span class="ef-field">{formatNumber(post.words)} 字</span></li>
 			<li><span>阅读</span><span class="ef-field">约 {post.minutes} 分钟</span></li>
 		</ul>
+		<Built target={data.deployTarget} />
 	</aside>
 </div>
 
@@ -158,10 +160,10 @@
 		margin: 0 0 1rem;
 	}
 
-	/* 页边的目录：正在读的那节用当前位置色线标出 */
+	/* 页边的目录：正在读的那节用当前位置色线标出。
+	   右栏不做吸附：跟随页面一起滚动，和页脚的距离固定不变，
+	   滑动时不会再出现"能拉开"的空隙（吸附也是之前重叠的根源） */
 	.toc {
-		position: sticky;
-		top: 2rem;
 		max-width: 18rem;
 	}
 	.toc h2 {

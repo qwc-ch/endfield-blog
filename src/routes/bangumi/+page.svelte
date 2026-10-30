@@ -3,6 +3,10 @@
 	import { onMount } from 'svelte';
 	import { STATUS_WORDS, bgmDate, fetchAllCategories, sortItems } from '#lib/bangumi';
 	import { siteConfig } from '#config';
+	import Built from '#lib/components/Built.svelte';
+	import type { PageData } from './$types';
+
+	let { data }: { data: PageData } = $props();
 
 	let categories = $state<import('#lib/bangumi').BgmCategory[]>([]);
 	let loading = $state(true);
@@ -38,7 +42,12 @@
 		</p>
 
 		{#if loading}
-			<p class="ef-field" style="margin-top: 1.5rem">正在从 Bangumi 拉取收藏…</p>
+			<div class="wait" role="status" style="margin-top: 1.5rem">
+				<p class="ef-field">正在从 Bangumi 拉取收藏…</p>
+				<div class="ef-skeleton line" style="width: 62%"></div>
+				<div class="ef-skeleton line" style="width: 84%"></div>
+				<div class="ef-skeleton line" style="width: 47%"></div>
+			</div>
 		{:else if failed}
 			<p class="ef-notice" data-flag="注意" style="margin-top: 1.5rem">
 				收藏拉取失败，可能是接口限流或网络不通，稍后刷新再试。
@@ -55,7 +64,7 @@
 				{#each [2, 1, 3] as status (status)}
 					{@const group = sortItems(cat.items.filter((i) => i.type === status))}
 					{#if group.length}
-						<p class="status ef-field">{STATUS_WORDS[cat.id]?.[status] ?? status} · {group.length}</p>
+						<p class="status ef-field">{STATUS_WORDS[cat.id]?.[status] ?? status} │ {group.length}</p>
 						<ul class="rows">
 							{#each group as item, i (item.subject?.id)}
 								<li>
@@ -77,8 +86,8 @@
 										{/if}
 										<span class="meta ef-field">
 											{#if item.subject?.date}{item.subject.date.slice(0, 4)}{/if}
-											{#if item.subject?.score} · {item.subject.score.toFixed(1)}{/if}
-											{#if item.updated_at} · {bgmDate(item.updated_at)} 收藏{/if}
+											{#if item.subject?.score} │ {item.subject.score.toFixed(1)}{/if}
+											{#if item.updated_at} │ {bgmDate(item.updated_at)} 收藏{/if}
 										</span>
 										<span class="no ef-field">No.{String(i + 1).padStart(3, '0')}</span>
 									</a>
@@ -109,6 +118,7 @@
 		<p class="rule">
 			完整主页在 <a href="https://bgm.tv/user/{'1186385'}" target="_blank" rel="noopener">bgm.tv</a>，这边只同步收藏。
 		</p>
+		<Built target={data.deployTarget} />
 	</aside>
 </div>
 
@@ -122,9 +132,13 @@
 	.count {
 		margin-left: auto;
 	}
+	.wait {
+		display: grid;
+		gap: 0.35rem;
+	}
 	.status {
 		margin: 1.25rem 0 0.5rem;
-		color: var(--ef-ink-3);
+		color: var(--ef-ink-2);
 	}
 	.rows {
 		margin: 0;
