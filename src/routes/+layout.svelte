@@ -77,7 +77,9 @@
 
 	<div class="main">
 		<Announcement />
-		{@render children()}
+		<main class="content">
+			{@render children()}
+		</main>
 
 		<footer class="foot">
 			<ul class="ef-facts ef-field">
@@ -161,9 +163,16 @@
 		flex-direction: column;
 		min-width: 0;
 	}
+	/* 正文装进 main 地标（无障碍 landmark-one-main），它自己撑满剩余高度 */
+	.content {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		min-width: 0;
+	}
 	/* 让页面内容撑开，页脚贴在底部；公告条排在内容前面，不参与撑开 */
-	.main > :global(.ef-spread),
-	.main > :global(.hero) {
+	.content > :global(.ef-spread),
+	.content > :global(.hero) {
 		flex: 1;
 	}
 	.foot {

@@ -86,8 +86,7 @@
   color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
+@media (prefers-color-scheme: dark){:root:not([data-theme]) {
     --ef-paper: #191919;
     --ef-panel: #222222;
     --ef-ink: #ededed;
@@ -100,8 +99,7 @@
     --ef-danger: #ff8a7a;
     --ef-mark: color-mix(in srgb, var(--ef-signal) 22%, transparent);
     color-scheme: dark;
-  }
-}
+  }}
 
 /* ---------- 2. base ---------- */
 
@@ -171,12 +169,10 @@
     url('./contours/contour-b.svg') left -6rem bottom -14rem / 40rem auto no-repeat;
 }
 
-@media (max-width: 719px) {
-  .ef-contours::before {
+@media (max-width: 719px){.ef-contours::before {
     -webkit-mask: url('./contours/contour-a.svg') right -12rem top -4rem / 34rem auto no-repeat;
     mask: url('./contours/contour-a.svg') right -12rem top -4rem / 34rem auto no-repeat;
-  }
-}
+  }}
 
 /* ---------- 3. marks that carry meaning ---------- */
 
@@ -325,30 +321,6 @@ a.ef-kv:hover > :first-child,
 }
 
 /* A state: live is solid ink, waiting is dashed, needs-a-look is a yellow block. */
-.ef-state {
-  display: inline-block;
-  padding: 0 0.5em;
-  border: 1px solid currentColor;
-  font-family: var(--ef-font-ui);
-  font-stretch: var(--ef-wide);
-  font-size: 0.7rem;
-  line-height: 1.6;
-  white-space: nowrap;
-  vertical-align: 0.15em;
-}
-.ef-state.is-draft {
-  color: var(--ef-ink-2);
-  border-style: dashed;
-}
-.ef-state.is-hidden {
-  border-style: dashed;
-}
-.ef-state.is-alert {
-  border-color: var(--ef-signal);
-  background: var(--ef-signal);
-  color: var(--ef-on-signal);
-  font-weight: 700;
-}
 
 /* Something needs reading: a yellow flag before the words. Red is not used. */
 .ef-notice {
@@ -474,41 +446,28 @@ a.ef-kv:hover > :first-child,
 }
 /* Touch screens have no pointing, so "act on this" shows at rest: the main
    action is yellow, and pressing does the wipe that hovering does elsewhere. */
-@media (hover: none) {
-  .ef-btn.go {
+@media (hover: none){.ef-btn.go {
     --fill: var(--ef-signal);
     --wipe: color-mix(in srgb, var(--ef-signal), #000 12%);
     color: var(--ef-on-signal);
-  }
-  .ef-btn:active:not(:disabled) {
+  }.ef-btn:active:not(:disabled) {
     color: var(--ef-on-signal);
-  }
-  .ef-btn.danger:active:not(:disabled) {
+  }.ef-btn.danger:active:not(:disabled) {
     color: var(--ef-panel);
-  }
-  .ef-btn:active:not(:disabled)::before {
+  }.ef-btn:active:not(:disabled)::before {
     transform: none;
     transition-duration: 0.1s;
-  }
-  /* 16px keeps iOS from zooming into a focused field */
-  .ef-form :is(input, select, textarea) {
-    font-size: 1rem;
-  }
-}
+  }/* 16px keeps iOS from zooming into a focused field */}
 
-@keyframes ef-edge {
-  0% {
+@keyframes ef-edge{0% {
     transform: none;
     opacity: 1;
-  }
-  90% {
+  }90% {
     opacity: 1;
-  }
-  100% {
+  }100% {
     transform: translateX(100%);
     opacity: 0;
-  }
-}
+  }}
 
 .ef-actions {
   display: flex;
@@ -566,25 +525,19 @@ a.ef-record:is(:hover, :focus-visible) > * {
   font-size: var(--ef-t-body);
   line-height: 1.5;
 }
-@media (max-width: 719px) {
-  .ef-records .ef-record {
+@media (max-width: 719px){.ef-records .ef-record {
     grid-template-columns: auto minmax(0, 1fr) auto;
     row-gap: 0.25rem;
-  }
-  .ef-record .name {
+  }.ef-record .name {
     grid-column: 1 / -1;
     grid-row: 2;
-  }
-  .ef-record .ef-tag {
+  }.ef-record .ef-tag {
     justify-self: start;
-  }
-  /* the count stays on the first line, at the right */
-  .ef-record > .ef-field:last-child {
+  }/* the count stays on the first line, at the right */.ef-record > .ef-field:last-child {
     grid-column: -2;
     grid-row: 1;
     justify-self: end;
-  }
-}
+  }}
 
 /* A column of label / figure pairs, for a margin or a panel. */
 .ef-ledger {
@@ -625,15 +578,12 @@ a.ef-record:is(:hover, :focus-visible) > * {
   min-width: 0;
   padding: clamp(2rem, 5vw, 3.5rem) var(--ef-pad) 3rem;
 }
-@media (max-width: 959px) {
-  .ef-spread {
+@media (max-width: 959px){.ef-spread {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .ef-sheet {
+  }.ef-sheet {
     border-right: 0;
     border-bottom: 1px solid var(--ef-rule);
-  }
-}
+  }}
 
 /* A page's name with its count, ruled off in ink. */
 .ef-sheet-head {
@@ -723,12 +673,10 @@ a.ef-record:is(:hover, :focus-visible) > * {
   text-decoration-thickness: 1.5px;
   text-underline-offset: 0.25em;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) .ef-prose a {
+@media (prefers-color-scheme: dark){:root:not([data-theme]) .ef-prose a {
     text-decoration-thickness: 1.5px;
     text-underline-offset: 0.25em;
-  }
-}
+  }}
 .ef-prose strong {
   font-weight: 700;
 }
@@ -914,15 +862,7 @@ a.ef-record:is(:hover, :focus-visible) > * {
 
 /* The command bar: dark in both themes, so the yellow block of "where you are"
    reads the same everywhere. */
-.ef-cmdbar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  gap: 0 1.5rem;
-  padding-inline: var(--ef-pad);
-  background: #161616;
-  color: #ededed;
-}
+
 .ef-cmdbar .brand {
   display: flex;
   align-items: center;
@@ -933,61 +873,7 @@ a.ef-record:is(:hover, :focus-visible) > * {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.ef-cmdbar .seal {
-  display: grid;
-  place-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  background: linear-gradient(-45deg, transparent calc(0.45rem * var(--ef-cut-k)), var(--ef-signal) calc(0.45rem * var(--ef-cut-k) + 0.5px));
-  color: var(--ef-on-signal);
-  font-size: 1.3rem;
-  letter-spacing: 0;
-}
-.ef-cmdbar nav {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: auto;
-}
-.ef-cmdbar nav a {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 3.4rem;
-  padding: 0.3rem 1.15rem 0.3rem 0.8rem;
-  color: #b8b8b8;
-  font-weight: 600;
-  line-height: 1.3;
-}
-.ef-cmdbar nav a small {
-  font-size: 0.6rem;
-  font-stretch: var(--ef-wider);
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  opacity: 0.75;
-}
-.ef-cmdbar nav a::after {
-  content: '';
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 3px;
-  background: var(--ef-signal);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.22s var(--ef-mech);
-}
-.ef-cmdbar nav a:hover {
-  color: #fff;
-  background: #232323;
-}
-.ef-cmdbar nav a:not([aria-current]):hover::after {
-  transform: none;
-}
-.ef-cmdbar nav a[aria-current] {
-  color: var(--ef-on-signal);
-  background: linear-gradient(-45deg, transparent calc(var(--ef-cut) + 2px), var(--ef-signal) calc(var(--ef-cut) + 2.5px));
-}
+
 .ef-cmdbar .count {
   position: absolute;
   top: 0.35rem;
@@ -1001,208 +887,21 @@ a.ef-record:is(:hover, :focus-visible) > * {
   font-weight: 700;
   text-align: center;
 }
-.ef-cmdbar .util {
-  display: flex;
-  align-items: center;
-  gap: 1.1rem;
-  font-size: 0.78rem;
-  color: #b8b8b8;
-}
 
 /* A console page's name: heavy, with a hatched band beside it. */
-.ef-head {
-  display: grid;
-  grid-template-columns: auto minmax(2rem, 1fr);
-  align-items: center;
-  gap: 0.4rem 1.25rem;
-  margin-bottom: 1.5rem;
-}
-.ef-head::after {
-  content: '';
-  grid-column: 2;
-  grid-row: 1;
-  height: 0.9rem;
-  background: var(--ef-hatch);
-  border-left: 0.9rem solid var(--ef-ink);
-}
-.ef-head h1 {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-  margin: 0;
-  font-size: clamp(1.9rem, 4vw, 2.6rem);
-  font-weight: 800;
-  line-height: 1.15;
-}
-.ef-head h1 small {
-  font-size: 0.7rem;
-  font-stretch: var(--ef-wider);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ef-ink-2);
-}
-.ef-head p {
-  grid-column: 1 / -1;
-  margin: 0;
-  color: var(--ef-ink-2);
-}
 
 /* A panel: a plate on the paper with a heavy ink tab on its top edge, which
    runs out along the whole edge when the panel is pointed at.
    Add one of .cut-tl / .cut-tr / .cut-bl / .cut-br to cut away the corner that
    faces a central dial, so panels follow its curve instead of forming a grid. */
-.ef-panel {
-  --cutaway: calc(1.6rem * var(--ef-cut-k));
-  position: relative;
-  min-width: 0;
-  padding: 1rem 1.15rem 1.15rem;
-  background: var(--ef-panel);
-  border: 1px solid var(--ef-rule);
-}
-.ef-panel::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  right: -1px;
-  height: 5px;
-  background: var(--ef-ink);
-  transform: scaleX(0.14);
-  transform-origin: left;
-  transition: transform 0.4s var(--ef-mech);
-  pointer-events: none;
-}
-.ef-panel.tab-right::before {
-  transform-origin: right;
-}
-.ef-panel:is(:hover, :focus-within)::before {
-  transform: none;
-}
-.ef-panel:is(.cut-tl, .cut-tr, .cut-bl, .cut-br) {
-  border: 0;
-}
-.ef-panel.cut-br {
-  background: linear-gradient(-45deg, transparent var(--cutaway), var(--ef-panel) calc(var(--cutaway) + 0.5px));
-}
-.ef-panel.cut-bl {
-  background: linear-gradient(45deg, transparent var(--cutaway), var(--ef-panel) calc(var(--cutaway) + 0.5px));
-}
-.ef-panel.cut-tr {
-  background: linear-gradient(-135deg, transparent var(--cutaway), var(--ef-panel) calc(var(--cutaway) + 0.5px));
-}
-.ef-panel.cut-tl {
-  background: linear-gradient(135deg, transparent var(--cutaway), var(--ef-panel) calc(var(--cutaway) + 0.5px));
-}
-.ef-panel > h2 {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-  margin: 0 0 0.6rem;
-  font-size: 1rem;
-  font-weight: 800;
-}
-.ef-panel > h2 > :is(a, small) {
-  margin-left: auto;
-  color: var(--ef-ink-2);
-  font-size: 0.75rem;
-  font-weight: 400;
-}
 
 /* A lead from a panel to whatever it describes: a hairline ending in a square.
    Put .lead-right (or .lead-left) on a panel; set --lead to its length. */
-.ef-panel:is(.lead-right, .lead-left)::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: var(--lead, 3rem);
-  height: 7px;
-  margin-top: -3.5px;
-  pointer-events: none;
-}
-.ef-panel.lead-right::after {
-  left: 100%;
-  background:
-    linear-gradient(var(--ef-ink), var(--ef-ink)) center / 100% 1px no-repeat,
-    linear-gradient(var(--ef-ink), var(--ef-ink)) right center / 7px 7px no-repeat;
-}
-.ef-panel.lead-left::after {
-  right: 100%;
-  background:
-    linear-gradient(var(--ef-ink), var(--ef-ink)) center / 100% 1px no-repeat,
-    linear-gradient(var(--ef-ink), var(--ef-ink)) left center / 7px 7px no-repeat;
-}
 
 /* Big figures, three to a panel. Pointing at one drives yellow under it. */
-.ef-figs {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.75rem;
-  padding-top: 0.7rem;
-  border-top: 1px solid var(--ef-rule);
-}
-.ef-figs > * {
-  display: grid;
-  gap: 0.1rem;
-  align-content: start;
-  justify-items: start;
-}
-.ef-figs b {
-  font-size: 2.4rem;
-  font-stretch: var(--ef-wide);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  font-variant-numeric: tabular-nums;
-  background: linear-gradient(var(--ef-signal), var(--ef-signal)) left / 0% 100% no-repeat;
-  transition: background-size 0.22s var(--ef-mech);
-}
-.ef-figs span {
-  font-size: 0.85rem;
-  color: var(--ef-ink-2);
-}
-.ef-figs > :is(a:hover, a:focus-visible) b,
-.ef-figs .is-alert b {
-  background-size: 100% 100%;
-  color: var(--ef-on-signal);
-}
 
 /* Rows of work inside a panel, edge to edge. */
-.ef-rows {
-  margin: 0 -1.15rem;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--ef-rule);
-}
-.ef-rows > li {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.25rem 1rem;
-  align-items: center;
-  padding: 0.8rem 1.15rem;
-  border-bottom: 1px solid var(--ef-rule);
-  transition: background-color 0.15s;
-}
-.ef-rows > li::before {
-  content: '';
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 4px;
-  background: var(--ef-trace);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.2s var(--ef-snap);
-}
-.ef-rows > li:hover {
-  background: var(--ef-paper);
-}
-.ef-rows > li:is(:hover, :focus-within)::before {
-  transform: none;
-}
-.ef-rows > li:last-child {
-  border-bottom: 0;
-}
+
 .ef-rows .meta {
   display: flex;
   flex-wrap: wrap;
@@ -1212,199 +911,88 @@ a.ef-record:is(:hover, :focus-visible) > * {
   font-size: 0.75rem;
   color: var(--ef-ink-2);
 }
-.ef-rows .acts {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 0.35rem;
-}
 
 /* ---------- 9. forms ---------- */
-
-.ef-form .field {
-  display: grid;
-  gap: 0.35rem;
-}
-.ef-form .field > span {
-  font-size: var(--ef-t-field);
-  font-weight: 600;
-}
-.ef-form .field small {
-  color: var(--ef-ink-2);
-  font-size: 0.82rem;
-}
-.ef-form :is(input:not([type='checkbox'], [type='radio'], [type='range']), select, textarea) {
-  width: 100%;
-  min-width: 0;
-  padding: 0.55rem 0.7rem;
-  border: 1px solid var(--ef-rule);
-  border-radius: 0;
-  background: var(--ef-panel);
-  color: var(--ef-ink);
-  font: inherit;
-  transition: border-color 0.15s;
-}
-.ef-form :is(input, select, textarea):hover {
-  border-color: var(--ef-ink-2);
-}
-.ef-form :is(input, select, textarea):focus-visible {
-  border-color: var(--ef-ink);
-  outline: 2px solid var(--ef-trace);
-  outline-offset: -1px;
-}
-.ef-form :is(input[type='checkbox'], input[type='radio']) {
-  accent-color: var(--ef-ink);
-}
 
 /* ---------- 10. motion ---------- */
 
 /* Things that open a page: driven in behind a shutter, uncovered from a cut
    corner, switched on from the top down. All of it is under a second. */
-@media (prefers-reduced-motion: no-preference) {
-  .ef-in-drive {
+@media (prefers-reduced-motion: no-preference){.ef-in-drive {
     animation: ef-drive 620ms var(--ef-mech) both;
-  }
-  .ef-in-stroke {
+  }.ef-in-stroke {
     animation: ef-stroke 420ms var(--ef-mech) 420ms both;
-  }
-  .ef-in-power {
-    animation: ef-power 520ms var(--ef-mech) backwards;
-    animation-delay: calc(var(--i, 0) * 100ms + 120ms);
-  }
-  .ef-in-come {
+  }.ef-in-come {
     animation: ef-come 320ms var(--ef-snap) both;
     animation-delay: calc(var(--i, 0) * 38ms);
-  }
-  .ef-tri.ef-in-sweep {
+  }.ef-tri.ef-in-sweep {
     transform-origin: left;
     animation: ef-sweep 600ms var(--ef-ease) both;
-  }
-  .ef-ticker .track {
+  }.ef-ticker .track {
     animation: ef-pass 60s linear infinite;
-  }
-  .ef-ticker:is(:hover, :focus-within) .track {
+  }.ef-ticker:is(:hover, :focus-within) .track {
     animation-play-state: paused;
-  }
-}
+  }}
 
-@keyframes ef-drive {
-  from {
+@keyframes ef-drive{from {
     clip-path: inset(0 100% 0 0);
     transform: translateX(-0.12em);
-  }
-  to {
+  }to {
     clip-path: inset(0 -5% 0 0);
     transform: none;
-  }
-}
-@keyframes ef-stroke {
-  from {
+  }}
+@keyframes ef-stroke{from {
     background-size: 0% 100%;
-  }
-}
-@keyframes ef-power {
-  from {
+  }}
+@keyframes ef-power{from {
     opacity: 0;
     clip-path: inset(0 0 100% 0);
-  }
-  to {
+  }to {
     opacity: 1;
     clip-path: inset(-6px);
-  }
-}
-@keyframes ef-come {
-  from {
+  }}
+@keyframes ef-come{from {
     opacity: 0;
     transform: translateX(-14px);
     clip-path: inset(0 100% 0 0);
-  }
-  to {
+  }to {
     opacity: 1;
     transform: none;
     clip-path: inset(0 -2% 0 0);
-  }
-}
-@keyframes ef-sweep {
-  from {
+  }}
+@keyframes ef-sweep{from {
     transform: scaleX(0);
-  }
-}
-@keyframes ef-pass {
-  to {
+  }}
+@keyframes ef-pass{to {
     transform: translateX(-50%);
-  }
-}
+  }}
 
 /* Going from page to page (same-origin navigations): the new page is drawn
    across the old one by a slanted shutter. */
-@media (prefers-reduced-motion: no-preference) {
-  @view-transition {
-    navigation: auto;
-  }
-  ::view-transition-old(root) {
+@media (prefers-reduced-motion: no-preference){::view-transition-old(root) {
     animation: none;
-  }
-  ::view-transition-new(root) {
+  }::view-transition-new(root) {
     animation: ef-shutter 360ms var(--ef-mech) both;
-  }
-}
-@keyframes ef-shutter {
-  from {
+  }}
+@keyframes ef-shutter{from {
     clip-path: polygon(0 0, 0 0, -14% 100%, -14% 100%);
-  }
-  to {
+  }to {
     clip-path: polygon(0 0, 114% 0, 100% 100%, -14% 100%);
-  }
-}
+  }}
 
-@media (prefers-reduced-motion: reduce) {
-  /* the ticker stops and becomes a strip you can scroll */
-  .ef-ticker {
+@media (prefers-reduced-motion: reduce){/* the ticker stops and becomes a strip you can scroll */.ef-ticker {
     overflow-x: auto;
-  }
-  .ef-ticker ul[aria-hidden] {
+  }.ef-ticker ul[aria-hidden] {
     display: none;
-  }
-  .ef *,
+  }.ef *,
   .ef *::before,
   .ef *::after {
     transition: none !important;
     animation: none !important;
-  }
-}
+  }}
 
 /* ---------- 11. the dial (built by dial.js) ---------- */
 
-.ef-dial {
-  display: block;
-  width: 100%;
-  height: auto;
-  overflow: visible;
-  font-family: var(--ef-font-ui);
-}
-.ef-dial .orbit {
-  fill: none;
-  stroke: var(--ef-ink-2);
-  stroke-dasharray: 2 10;
-}
-.ef-dial .plate {
-  fill: var(--ef-panel);
-  stroke: var(--ef-ink);
-  stroke-width: 1.5;
-  transition: fill 0.15s;
-}
-.ef-dial .zh {
-  font-size: 19px;
-  font-weight: 800;
-  fill: var(--ef-ink);
-}
-.ef-dial .en {
-  font-size: 8px;
-  font-stretch: var(--ef-wider);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  fill: var(--ef-ink-2);
-}
 .ef-dial .seg.is-here .plate {
   fill: var(--ef-ink);
 }
@@ -1418,18 +1006,7 @@ a.ef-record:is(:hover, :focus-visible) > * {
   fill: var(--ef-signal);
   stroke: var(--ef-on-signal);
 }
-.ef-dial .lock,
-.ef-dial .beam {
-  fill: none;
-  stroke: var(--ef-trace);
-  stroke-width: 3;
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  transition: stroke-dashoffset 0.3s var(--ef-mech);
-}
-.ef-dial .beam {
-  stroke-width: 1.5;
-}
+
 .ef-dial .seg:is(:hover, :focus-visible) .plate {
   fill: var(--ef-signal);
 }
@@ -1442,86 +1019,34 @@ a.ef-record:is(:hover, :focus-visible) > * {
 .ef-dial .seg:focus-visible {
   outline: none;
 }
-.ef-dial .core-tag {
-  fill: var(--ef-signal);
-}
-.ef-dial .core-label {
-  font-size: 10px;
-  fill: var(--ef-ink-2);
-}
-.ef-dial .core-label.on-tag {
-  font-weight: 700;
-  fill: var(--ef-on-signal);
-}
-.ef-dial .core {
-  font-size: 46px;
-  font-stretch: var(--ef-wide);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  fill: var(--ef-ink);
-}
-.ef-dial .core .unit {
-  font-size: 14px;
-  letter-spacing: 0;
-}
-.ef-dial .gauge circle {
-  fill: none;
-  stroke-width: 11;
-}
+
 .ef-dial .gauge .track {
   stroke: var(--ef-chip);
 }
-.ef-dial .gauge .arc {
-  stroke: var(--ef-ink-2);
-}
-.ef-dial .gauge text {
-  font-size: 10px;
-  fill: var(--ef-ink-2);
-}
+
 /* a reading that is nearly full: the arc goes to the colour of "here", with a yellow label */
-.ef-dial .gauge.is-alert .arc {
-  stroke: var(--ef-trace);
-}
-.ef-dial .gauge.is-alert text {
-  font-weight: 700;
-  fill: var(--ef-on-signal);
-}
+
 .ef-dial .gauge .flag {
   fill: var(--ef-signal);
   stroke: none;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .ef-dial .orbit {
-    transform-box: view-box;
-    transform-origin: 300px 300px;
-  }
-  .ef-dial .seg {
+@media (prefers-reduced-motion: no-preference){.ef-dial .seg {
     animation: ef-assemble 360ms var(--ef-snap) backwards;
     animation-delay: calc(var(--i) * 45ms + 80ms);
     transform-box: view-box;
     transform-origin: 300px 300px;
-  }
-}
-@keyframes ef-assemble {
-  from {
+  }}
+@keyframes ef-assemble{from {
     opacity: 0;
     transform: scale(0.94);
-  }
-}
+  }}
 
 /* ---------- 12. app parts: phone screens, H5, PWA ----------
    The same parts as the Flutter kit (templates/flutter), for the web. */
 
 /* Top bar: no fill, not centred, no shadow. Eyebrow + bold Chinese, a hairline
    below, at most one or two text buttons on the right. */
-.ef-topbar {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: calc(0.75rem + env(safe-area-inset-top, 0px)) var(--ef-pad) 0.75rem;
-  border-bottom: 1px solid var(--ef-rule);
-  background: var(--ef-paper);
-}
+
 .ef-topbar > .ef-pair {
   margin-right: auto;
 }
@@ -1529,78 +1054,13 @@ a.ef-record:is(:hover, :focus-visible) > * {
   font-size: 1.25rem;
 }
 /* the back key: a small cut square, not a round icon button */
-.ef-back {
-  display: grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  flex: none;
-  border: 0;
-  background: linear-gradient(-45deg, transparent calc(var(--ef-cut) - 0.5px), var(--ef-chip) var(--ef-cut));
-  color: var(--ef-ink);
-  font: 700 1.25rem/1 var(--ef-font-ui);
-}
 
 /* Bottom tab bar: 3 to 5 items, words not just icons; the current one is a
    whole yellow block with a cut corner. */
-.ef-tabbar {
-  position: fixed;
-  inset: auto 0 0;
-  z-index: 10;
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  gap: 6px;
-  padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px));
-  background: var(--ef-panel);
-  border-top: 1px solid var(--ef-rule);
-}
-.ef-tabbar a {
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  min-height: 52px;
-  color: var(--ef-ink);
-  font: 500 0.875rem/1.3 var(--ef-font-ui);
-  transition: background-color 0.28s var(--ef-mech);
-}
-.ef-tabbar small {
-  font-size: 0.5625rem;
-  font-weight: 600;
-  font-stretch: var(--ef-wider);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ef-ink-2);
-}
-.ef-tabbar [aria-current='page'] {
-  background: linear-gradient(-45deg, transparent calc(var(--ef-cut) - 0.5px), var(--ef-signal) var(--ef-cut));
-  color: var(--ef-on-signal);
-  font-weight: 700;
-}
-.ef-tabbar [aria-current='page'] small {
-  color: var(--ef-on-signal);
-}
+
 /* keep content clear of a fixed tab bar */
-.ef-has-tabbar {
-  padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
-}
-@media (min-width: 600px) {
-  /* tablets: the tab bar stands up along the left edge */
-  .ef-tabbar.can-rail {
-    inset: 0 auto 0 0;
-    width: 6.5rem;
-    grid-auto-flow: row;
-    grid-auto-rows: 64px;
-    align-content: start;
-    padding: calc(1rem + env(safe-area-inset-top, 0px)) 8px 1rem;
-    border-top: 0;
-    border-right: 1px solid var(--ef-rule);
-  }
-  .ef-has-tabbar:has(.ef-tabbar.can-rail) {
-    padding-bottom: 0;
-    padding-left: 6.5rem;
-  }
-}
+
+@media (min-width: 600px){/* tablets: the tab bar stands up along the left edge */}
 
 /* Side rail for the reading page: stacked nav, "// EN" over Chinese, the
    current item a whole yellow block. Below 1100px it lies down as a top bar. */
@@ -1628,22 +1088,18 @@ a.ef-record:is(:hover, :focus-visible) > * {
   font-weight: 700;
   background: linear-gradient(-45deg, transparent calc(var(--ef-cut) - 0.5px), var(--ef-signal) var(--ef-cut));
 }
-@media (max-width: 1099px) {
-  .ef-rail {
+@media (max-width: 1099px){.ef-rail {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     padding: 0.75rem var(--ef-pad);
     border-right: 0;
     border-bottom: 1px solid var(--ef-rule);
-  }
-  .ef-rail .brand {
+  }.ef-rail .brand {
     padding: 0 1rem 0 0;
-  }
-  .ef-rail a:not(.brand) {
+  }.ef-rail a:not(.brand) {
     padding: 0.3rem 0.8rem;
-  }
-}
+  }}
 
 /* Search: white field, "//" prefix, a 2px trace line at the bottom on focus. */
 .ef-search {
@@ -1677,124 +1133,21 @@ a.ef-record:is(:hover, :focus-visible) > * {
 
 /* Square switch: on is a yellow track with an ink block. Use on a checkbox:
    <input type="checkbox" role="switch" class="ef-switch"> */
-.ef-switch {
-  appearance: none;
-  position: relative;
-  flex: none;
-  width: 48px;
-  height: 26px;
-  margin: 0;
-  background: var(--ef-chip);
-  cursor: pointer;
-  transition: background-color 0.28s var(--ef-mech);
-}
-.ef-switch::before {
-  content: '';
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 20px;
-  height: 20px;
-  background: var(--ef-panel);
-  transition: transform 0.28s var(--ef-mech);
-}
-.ef-switch:checked {
-  background: var(--ef-signal);
-}
-.ef-switch:checked::before {
-  background: var(--ef-on-signal);
-  transform: translateX(22px);
-}
-.ef-switch:focus-visible {
-  outline: 2px solid var(--ef-ink);
-  outline-offset: 2px;
-}
 
 /* Segmented choice: an ink frame; the current segment is ink with paper text.
    Not yellow: yellow is kept for navigation and the main action.
    Radios inside labels: <div class="ef-seg" role="radiogroup"><label><input type="radio" name="d"><span>标准</span></label>… */
-.ef-seg {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  border: 1px solid var(--ef-ink);
-}
-.ef-seg label {
-  position: relative;
-  display: grid;
-  place-items: center;
-  min-height: 44px;
-  padding: 0 0.6rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    background-color 0.28s var(--ef-mech),
-    color 0.28s var(--ef-mech);
-}
-.ef-seg input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-.ef-seg label:has(:checked) {
-  background: var(--ef-ink);
-  color: var(--ef-paper);
-}
-.ef-seg label:has(:focus-visible) {
-  outline: 2px solid var(--ef-trace);
-  outline-offset: -4px;
-}
 
 /* Settings row: name and a line of help on the left, the control on the right. */
-.ef-setting {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.85rem 0;
-  border-bottom: 1px solid var(--ef-rule);
-}
-.ef-setting > :first-child {
-  flex: 1;
-  min-width: 0;
-}
-.ef-setting b {
-  display: block;
-  font-size: 1rem;
-  font-weight: 600;
-}
-.ef-setting small {
-  color: var(--ef-ink-2);
-  font-size: 0.75rem;
-}
 
 /* Mechanical progress: 24 cells, lit cells yellow, a padded readout.
    <div class="ef-progress" role="progressbar" aria-valuenow="63" style="--p: 0.63">
      <span class="ef-eyebrow">Syncing / 同步中</span><span class="ef-field">063%</span><i></i>
    </div>
    Add .is-unknown when there is no figure: a run of yellow cells walks left to right. */
-.ef-progress {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0.5rem;
-  align-items: baseline;
-}
-.ef-progress > i {
-  --cells: 24;
-  grid-column: 1 / -1;
-  height: 10px;
-  background:
-    linear-gradient(90deg, var(--ef-signal) calc(var(--p, 0) * 100%), transparent 0),
-    var(--ef-chip);
-  -webkit-mask: repeating-linear-gradient(90deg, #000 0 calc(100% / var(--cells) - 2px), transparent 0 calc(100% / var(--cells)));
-  mask: repeating-linear-gradient(90deg, #000 0 calc(100% / var(--cells) - 2px), transparent 0 calc(100% / var(--cells)));
-}
+
 .ef-progress > .ef-field {
   color: var(--ef-ink);
-}
-.ef-progress.is-unknown > i {
-  background:
-    linear-gradient(90deg, transparent 0 var(--run-at, 0%), var(--ef-signal) var(--run-at, 0%) calc(var(--run-at, 0%) + 25%), transparent 0),
-    var(--ef-chip);
 }
 
 /* Skeleton: plain chip blocks while something loads. No shimmer. */
@@ -1858,33 +1211,7 @@ a.ef-record:is(:hover, :focus-visible) > * {
   font-size: 1.25rem;
 }
 /* one action per row inside a sheet; danger text is red */
-.ef-act {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  width: 100%;
-  min-height: 52px;
-  padding: 0 var(--ef-pad);
-  border: 0;
-  border-top: 1px solid var(--ef-rule);
-  background: none;
-  color: var(--ef-ink);
-  font: 600 1rem var(--ef-font-ui);
-  text-align: left;
-}
-.ef-act > :first-child {
-  flex: 1;
-}
-.ef-act::after {
-  content: '›';
-  color: var(--ef-ink-2);
-}
-.ef-act.danger {
-  color: var(--ef-danger);
-}
-.ef-act:active {
-  background: var(--ef-paper);
-}
+
 .ef-drawer .ef-actions {
   padding: 0.75rem var(--ef-pad) 0;
 }
@@ -1932,198 +1259,81 @@ a.ef-record:is(:hover, :focus-visible) > * {
 
 /* A data table: eyebrow head, hairlines between rows, figures right-aligned
    in tabular figures, no zebra stripes. */
-.ef-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-variant-numeric: tabular-nums;
-}
-.ef-table th {
-  padding: 0.5rem 0.75rem;
-  border-bottom: 1px solid var(--ef-ink);
-  color: var(--ef-ink-2);
-  font-size: 0.7rem;
-  font-stretch: var(--ef-wider);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-align: left;
-  text-transform: uppercase;
-}
-.ef-table td {
-  padding: 0.6rem 0.75rem;
-  border-bottom: 1px solid var(--ef-rule);
-}
+
 .ef-table :is(th, td).num {
   text-align: right;
   font-stretch: var(--ef-wide);
-}
-.ef-table tbody tr:hover {
-  background: var(--ef-paper);
-  box-shadow: inset 4px 0 0 var(--ef-trace);
-}
-.ef-table-wrap {
-  overflow-x: auto;
 }
 
 /* Bars: grey columns; the one pointed at, or marked .is-here, turns to the
    colour of "here"; a reading over its limit gets a yellow square on top.
    <ol class="ef-bars"><li style="--v: 0.62"><span>10.12</span></li>… */
-.ef-bars {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  align-items: end;
-  gap: 4px;
-  height: 8rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-bottom: 1px solid var(--ef-ink);
-}
-.ef-bars > li {
-  position: relative;
-  height: calc(var(--v, 0) * 100%);
-  min-height: 2px;
-  background: color-mix(in srgb, var(--ef-ink-2) 45%, transparent);
-  transition: background-color 0.15s;
-}
-.ef-bars > li:is(:hover, .is-here) {
-  background: var(--ef-trace);
-}
-.ef-bars > li.is-over::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  width: 7px;
-  height: 7px;
-  margin-left: -3.5px;
-  background: var(--ef-signal);
-  outline: 1px solid var(--ef-on-signal);
-}
-.ef-bars > li > span {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding-top: 0.3rem;
-  color: var(--ef-ink-2);
-  font-size: 0.65rem;
-  font-stretch: var(--ef-wide);
-  white-space: nowrap;
-}
 
 /* ---------- 13. leaving, and changes of state ----------
    Every entrance has a way out. Exits run at about two-thirds of the entrance
    and always use mech: they start slow and shut hard, like a gate. */
-@media (prefers-reduced-motion: no-preference) {
-  /* a block appears wiped in from the left: a notice, a toast, a new row */
-  .ef-in-wipe {
-    animation: ef-wipe-in 280ms var(--ef-mech) both;
-  }
-  /* a block leaves wiped out to the right (fx.js removeRow() uses it) */
-  .ef-out-wipe {
+@media (prefers-reduced-motion: no-preference){/* a block appears wiped in from the left: a notice, a toast, a new row *//* a block leaves wiped out to the right (fx.js removeRow() uses it) */.ef-out-wipe {
     animation: ef-wipe-out 200ms var(--ef-mech) both;
-  }
-  .ef-drawer[open] > .body {
+  }.ef-drawer[open] > .body {
     animation: ef-sheet-in 360ms var(--ef-mech) both;
-  }
-  .ef-drawer[open]::backdrop,
+  }.ef-drawer[open]::backdrop,
   .ef-dialog[open]::backdrop {
     animation: ef-fade 200ms linear both;
-  }
-  .ef-dialog[open] > * {
+  }.ef-dialog[open] > * {
     animation: ef-power 280ms var(--ef-mech) both;
-  }
-  .ef-drawer.is-closing > .body {
+  }.ef-drawer.is-closing > .body {
     animation: ef-sheet-out 240ms var(--ef-mech) both;
-  }
-  .ef-dialog.is-closing > * {
+  }.ef-dialog.is-closing > * {
     animation: ef-shut 180ms var(--ef-mech) both;
-  }
-  :is(.ef-drawer, .ef-dialog).is-closing::backdrop {
+  }:is(.ef-drawer, .ef-dialog).is-closing::backdrop {
     animation: ef-fade 160ms linear reverse both;
-  }
-  .ef-toast {
+  }.ef-toast {
     animation: ef-wipe-in 280ms var(--ef-mech) both;
-  }
-  .ef-toast.is-closing {
+  }.ef-toast.is-closing {
     animation: ef-wipe-out 160ms var(--ef-mech) both;
-  }
-  /* unknown progress: a run of yellow cells walks across, and stops when done */
-  .ef-progress.is-unknown > i {
-    animation: ef-run 1.2s steps(24) infinite;
-  }
-  /* "done": after a save, yellow passes once through the button and out */
-  .ef-btn.is-done {
+  }/* unknown progress: a run of yellow cells walks across, and stops when done *//* "done": after a save, yellow passes once through the button and out */.ef-btn.is-done {
     color: var(--ef-on-signal);
-  }
-  .ef-btn.is-done::before {
+  }.ef-btn.is-done::before {
     animation: ef-done 600ms var(--ef-mech);
-  }
-}
+  }}
 
-@keyframes ef-wipe-in {
-  from {
+@keyframes ef-wipe-in{from {
     clip-path: inset(0 100% 0 0);
-  }
-  to {
+  }to {
     clip-path: inset(0);
-  }
-}
-@keyframes ef-wipe-out {
-  from {
+  }}
+@keyframes ef-wipe-out{from {
     clip-path: inset(0);
-  }
-  to {
+  }to {
     clip-path: inset(0 0 0 100%);
-  }
-}
-@keyframes ef-sheet-in {
-  from {
+  }}
+@keyframes ef-sheet-in{from {
     transform: translateY(100%);
-  }
-}
-@keyframes ef-sheet-out {
-  to {
+  }}
+@keyframes ef-sheet-out{to {
     transform: translateY(100%);
-  }
-}
-@keyframes ef-shut {
-  to {
+  }}
+@keyframes ef-shut{to {
     opacity: 0;
     clip-path: inset(0 0 100% 0);
-  }
-}
-@keyframes ef-fade {
-  from {
+  }}
+@keyframes ef-fade{from {
     opacity: 0;
-  }
-}
-@property --run-at {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: 0%;
-}
-@keyframes ef-run {
-  from {
+  }}
+
+@keyframes ef-run{from {
     --run-at: -25%;
-  }
-  to {
+  }to {
     --run-at: 100%;
-  }
-}
-@keyframes ef-done {
-  0% {
+  }}
+@keyframes ef-done{0% {
     transform: translateX(-101%);
-  }
-  45%,
+  }45%,
   60% {
     transform: none;
-  }
-  100% {
+  }100% {
     transform: translateX(101%);
-  }
-}
+  }}
 
 /* Switching themes: fx.js wireTheme() may uncover the new theme in a circle
    from the toggle. The page shutter must not run at the same time. */
@@ -2133,11 +1343,9 @@ a.ef-record:is(:hover, :focus-visible) > * {
   mix-blend-mode: normal;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  :is(.ef-drawer, .ef-dialog)::backdrop {
+@media (prefers-reduced-motion: reduce){:is(.ef-drawer, .ef-dialog)::backdrop {
     animation: none !important;
-  }
-}
+  }}
 
 /* ---------- 14. variants ----------
    The same grammar with a different face, so two products built from this kit
@@ -2186,20 +1394,17 @@ a.ef-record:is(:hover, :focus-visible) > * {
   --ef-rule: #323a3f;
   --ef-chip: #2a3034;
 }
-@media (prefers-color-scheme: dark) {
-  :root[data-ef-paper='warm']:not([data-theme]) {
+@media (prefers-color-scheme: dark){:root[data-ef-paper='warm']:not([data-theme]) {
     --ef-paper: #1b1a17;
     --ef-panel: #24221e;
     --ef-rule: #38352f;
     --ef-chip: #302d28;
-  }
-  :root[data-ef-paper='cool']:not([data-theme]) {
+  }:root[data-ef-paper='cool']:not([data-theme]) {
     --ef-paper: #171a1c;
     --ef-panel: #1f2326;
     --ef-rule: #323a3f;
     --ef-chip: #2a3034;
-  }
-}
+  }}
 
 :root[data-ef-cut='tight'] {
   --ef-cut-k: 0.6;
