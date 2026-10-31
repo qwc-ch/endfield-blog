@@ -1,0 +1,8 @@
+{
+	"name": "endfield-blog",
+	"compatibility_date": "2026-10-31",
+	"compatibility_flags": ["nodejs_compat"],
+	"assets": {
+		"directory": "./dist"
+	}
+}

@@ -5,9 +5,6 @@ name: Lighthouse CI
 # @lhci/cli 只在 runner 上用 action 装，本地不装任何依赖。
 
 on:
-  push:
-    branches: [main]
-  pull_request:
   workflow_dispatch:
 
 permissions:
