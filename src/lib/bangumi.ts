@@ -1,11 +1,14 @@
-// 番组计划数据：构建时从 Bangumi API 拉取收藏，静态烘进页面里。
-// 改 userId / apiUrl 就能换账号或镜像。
+// 番组计划：配置、类型和纯函数（浏览器也会用到）。
+// 真正的接口拉取在 bangumi.server.ts，只在构建时跑，页面不再请求接口。
+// 改 userId / subjectBaseUrl / userBaseUrl 就能换账号或镜像。
 
 export const bangumiConfig = {
 	/** Bangumi 用户 ID */
 	userId: '1186385',
-	/** API 地址（镜像） */
-	apiUrl: 'https://api.bangumi.pro',
+	/** 条目详情页（镜像站） */
+	subjectBaseUrl: 'https://bangumi.lat/subject/',
+	/** 个人主页（镜像站） */
+	userBaseUrl: 'https://bangumi.lat/user/',
 	/** 分类与接口的 subject_type 对应：1 书籍 / 2 动画 / 3 音乐 / 4 游戏 */
 	categories: [
 		{ id: 'anime', name: '动画', en: 'Anime', subjectType: 2 },
@@ -46,35 +49,6 @@ export interface BgmCategory {
 	en: string;
 	items: BgmItem[];
 	failed?: boolean;
-}
-
-/** 拉一个分类的全部收藏，失败返回空数组 */
-async function fetchCategory(subjectType: number): Promise<BgmItem[]> {
-	const out: BgmItem[] = [];
-	let offset = 0;
-	while (out.length < bangumiConfig.maxTotal) {
-		const url = `${bangumiConfig.apiUrl}/v0/users/${bangumiConfig.userId}/collections?subject_type=${subjectType}&limit=${bangumiConfig.limit}&offset=${offset}`;
-		const resp = await fetch(url, { headers: { Accept: 'application/json' } });
-		if (!resp.ok) throw new Error(`Bangumi API ${resp.status}`);
-		const data: { data?: BgmItem[] } = await resp.json();
-		const batch = data.data ?? [];
-		out.push(...batch);
-		if (batch.length < bangumiConfig.limit) break;
-		offset += bangumiConfig.limit;
-	}
-	return out;
-}
-
-export async function fetchAllCategories(): Promise<BgmCategory[]> {
-	const results: BgmCategory[] = [];
-	for (const cat of bangumiConfig.categories) {
-		try {
-			results.push({ ...cat, items: await fetchCategory(cat.subjectType) });
-		} catch {
-			results.push({ ...cat, items: [], failed: true });
-		}
-	}
-	return results;
 }
 
 /** 组内排序：在看优先，其余按收藏更新时间倒序 */

@@ -41,6 +41,16 @@
 		wireTheme();
 	});
 
+	// iOS Safari 的捏合不走 touch-action：抽屉打开时挡掉双指缩放，
+	// 免得整页连同抽屉一起被缩小（关掉抽屉后正文照常可缩放）
+	onMount(() => {
+		const blockPinch = (e: Event) => {
+			if (navEl?.open) e.preventDefault();
+		};
+		document.addEventListener('gesturestart', blockPinch, { passive: false });
+		return () => document.removeEventListener('gesturestart', blockPinch);
+	});
+
 	function maybeClose(e: MouseEvent) {
 		// 点了抽屉里的链接就收起（客户端跳转后抽屉不能再挡着页面）
 		if (navEl?.open && (e.target as HTMLElement | null)?.closest('a[href]')) {
@@ -225,9 +235,9 @@
 			align-items: center;
 			justify-content: space-between;
 			gap: 1rem;
-			/* 上下再收薄：站名和菜单键贴上沿，给内容让屏幕（safe-area 保留，防刘海压字） */
-			padding: 0.3125rem var(--ef-pad);
-			padding-top: env(safe-area-inset-top, 0px);
+			/* 上下收薄：站名和菜单键靠近上沿；再留一点呼吸，别贴死屏幕边（safe-area 保留，防刘海压字） */
+			padding: 0.5rem var(--ef-pad) 0.4375rem;
+			padding-top: calc(env(safe-area-inset-top, 0px) + 0.5rem);
 			/* 页首透底：等高线直接透出来，不垫灰底；滚动后垫回纸色保住可读性 */
 			background: transparent;
 			border-bottom: 1px solid transparent;
@@ -260,10 +270,10 @@
 		.topbar .ef-btn {
 			font-size: 1rem;
 		}
-		/* 站名在键块旁居中会显得偏下，行盒上提 4px 和键块顶边对齐 */
+		/* 站名在键块旁居中会显得偏上，行盒下放 2px 和键块视觉中线对齐 */
 		.topbar .brand {
 			position: relative;
-			top: -4px;
+			top: -2px;
 		}
 		.nav-drawer {
 			display: block;
@@ -273,6 +283,8 @@
 			height: 100dvh;
 			max-height: none;
 			margin: 0;
+			/* 抽屉开着时只留给上下滚动：双指缩放会连抽屉一起缩小，禁掉 */
+			touch-action: pan-y;
 		}
 		.nav-drawer > .body {
 			display: flex;

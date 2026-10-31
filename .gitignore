@@ -24,3 +24,4 @@ vite.config.ts.timestamp-*
 # 本地验收截图
 .shots*/
 .circle-cache.json
+.bangumi-cache.json

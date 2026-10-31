@@ -1,7 +1,6 @@
 <script lang="ts">
-	// 番组计划：浏览器端实时拉取 Bangumi 收藏，始终显示最新数据。
-	import { onMount } from 'svelte';
-	import { STATUS_WORDS, bgmDate, fetchAllCategories, sortItems } from '#lib/bangumi';
+	// 番组计划：收藏在构建时拉取并烘进页面，打开页面直接读静态快照，不再请求接口。
+	import { STATUS_WORDS, bangumiConfig, bgmDate, sortItems } from '#lib/bangumi';
 	import { siteConfig } from '#config';
 	import Built from '#lib/components/Built.svelte';
 	import Seo from '#lib/components/Seo.svelte';
@@ -9,21 +8,9 @@
 
 	let { data }: { data: PageData } = $props();
 
-	let categories = $state<import('#lib/bangumi').BgmCategory[]>([]);
-	let loading = $state(true);
-	let failed = $state(false);
-
+	const categories = $derived(data.categories);
+	const failed = $derived(categories.every((c) => c.failed));
 	const total = $derived(categories.reduce((n, c) => n + c.items.length, 0));
-
-	onMount(async () => {
-		try {
-			categories = await fetchAllCategories();
-		} catch {
-			failed = true;
-		} finally {
-			loading = false;
-		}
-	});
 </script>
 
 <Seo title="番组计划" description="{siteConfig.title}在 Bangumi 的收藏。" path="/bangumi/" />
@@ -33,22 +20,15 @@
 		<p class="ef-eyebrow slash">Bangumi</p>
 		<header class="ef-sheet-head">
 			<h1 class="ef-read">番组计划</h1>
-			<p class="ef-field">{loading ? '加载中' : failed ? '加载失败' : `共 ${total} 条`}</p>
+			<p class="ef-field">{failed ? '构建时拉取失败' : `共 ${total} 条`}</p>
 		</header>
 		<p class="ef-lede ef-read" style="margin-top: 1.25rem">
-			在 Bangumi 上的收藏记录，打开页面时实时从接口拉取。
+			在 Bangumi 上的收藏记录，构建时同步一次，打开页面直接读烘好的快照。
 		</p>
 
-		{#if loading}
-			<div class="wait" role="status" style="margin-top: 1.5rem">
-				<p class="ef-field">正在从 Bangumi 拉取收藏…</p>
-				<div class="ef-skeleton line" style="width: 62%"></div>
-				<div class="ef-skeleton line" style="width: 84%"></div>
-				<div class="ef-skeleton line" style="width: 47%"></div>
-			</div>
-		{:else if failed}
+		{#if failed}
 			<p class="ef-notice" data-flag="注意" style="margin-top: 1.5rem">
-				收藏拉取失败，可能是接口限流或网络不通，稍后刷新再试。
+				构建时收藏拉取失败，可能是接口限流或网络不通，下次构建会再试。
 			</p>
 		{/if}
 
@@ -59,6 +39,10 @@
 					<span class="ef-field count">{cat.items.length} 条</span>
 				</h2>
 
+				{#if cat.failed && !failed}
+					<p class="ef-field failed">这个分类构建时拉取失败，下次构建会再试。</p>
+				{/if}
+
 				{#each [2, 1, 3] as status (status)}
 					{@const group = sortItems(cat.items.filter((i) => i.type === status))}
 					{#if group.length}
@@ -68,7 +52,7 @@
 								<li>
 									<a
 										class="row"
-										href="https://bgm.tv/subject/{item.subject?.id}"
+										href="{bangumiConfig.subjectBaseUrl}{item.subject?.id}"
 										target="_blank"
 										rel="noopener"
 									>
@@ -108,13 +92,14 @@
 			{#each categories as cat (cat.id)}
 				<li><span>{cat.name}</span><span class="ef-field">{cat.items.length} 条</span></li>
 			{/each}
-			{#if !loading && !failed}
+			{#if !failed}
 				<li><span>合计</span><span class="ef-field">{total} 条</span></li>
 			{/if}
 		</ul>
 		<h2 class="ef-pair mid"><span class="ef-eyebrow">Link</span><span>主页</span></h2>
 		<p class="rule">
-			完整主页在 <a href="https://bgm.tv/user/{'1186385'}" target="_blank" rel="noopener">bgm.tv</a>，这边只同步收藏。
+			完整主页在镜像站
+			<a href="{bangumiConfig.userBaseUrl}{bangumiConfig.userId}" target="_blank" rel="noopener">bangumi.lat</a>，这边只同步收藏。
 		</p>
 		<Built target={data.deployTarget} />
 	</aside>
@@ -130,12 +115,12 @@
 	.count {
 		margin-left: auto;
 	}
-	.wait {
-		display: grid;
-		gap: 0.35rem;
-	}
 	.status {
 		margin: 1.25rem 0 0.5rem;
+		color: var(--ef-ink-2);
+	}
+	.failed {
+		margin-top: 0.5rem;
 		color: var(--ef-ink-2);
 	}
 	.rows {

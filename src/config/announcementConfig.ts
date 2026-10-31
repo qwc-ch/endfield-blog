@@ -2,7 +2,7 @@
 
 export const announcementConfig = {
 	/** 是否显示公告条 */
-	enabled: true,
+	enabled: false,
 	/** 左边那个黄色小标签 */
 	flag: '公告',
 	/** 公告正文 */
