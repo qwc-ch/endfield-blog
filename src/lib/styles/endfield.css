@@ -60,6 +60,7 @@
   --ef-t-field: 0.8125rem;
 
   --ef-measure: 40rem; /* a reading line, about 38 Chinese characters */
+  --ef-measure-wide: 48rem; /* wide reading cap, about 48 Chinese characters */
   --ef-pad: clamp(1rem, 4vw, 2.5rem);
   --ef-cut-k: 1; /* every corner cut scales with this (variant: tight 0.6, wide 1.6) */
   --ef-cut: calc(7px * var(--ef-cut-k)); /* the corner cut off small entrances */
@@ -565,7 +566,9 @@ a.ef-record:is(:hover, :focus-visible) > * {
 
 .ef-spread {
   display: grid;
-  grid-template-columns: minmax(0, calc(var(--ef-measure) + var(--ef-pad) * 2)) minmax(0, 1fr);
+  /* 正文白纸占满右栏以外的全部宽度（窄屏时不小于一个阅读栏宽，底线保护）；
+     页边贴死最右边，收成一条窄注栏（至多 22rem） */
+  grid-template-columns: minmax(calc(var(--ef-measure) + var(--ef-pad) * 2), 1fr) minmax(0, 22rem);
   min-height: 100%;
 }
 .ef-sheet {
@@ -621,7 +624,7 @@ a.ef-record:is(:hover, :focus-visible) > * {
 }
 
 .ef-lede {
-  max-width: var(--ef-measure);
+  max-width: var(--ef-measure-wide);
   margin: 1.25rem 0 0;
   font-size: var(--ef-t-body);
   line-height: 1.75;
@@ -654,7 +657,7 @@ a.ef-record:is(:hover, :focus-visible) > * {
 /* Reading prose: plain Chinese sans, regular weight, generous leading; a link is ink over a yellow block
    (a yellow line on dark, where the block would swallow light text). */
 .ef-prose {
-  max-width: var(--ef-measure);
+  max-width: var(--ef-measure-wide);
   font-family: var(--ef-font-text);
   font-size: var(--ef-t-body);
   line-height: 1.85;

@@ -223,7 +223,7 @@
 	}
 	.license .body {
 		margin: 0;
-		max-width: var(--ef-measure);
+		max-width: var(--ef-measure-wide);
 		font-size: 0.9375rem;
 		line-height: 1.75;
 		color: var(--ef-ink-2);

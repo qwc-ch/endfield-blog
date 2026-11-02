@@ -62,7 +62,7 @@
 
 <style>
 	p {
-		max-width: var(--ef-measure);
+		max-width: var(--ef-measure-wide);
 		line-height: 1.85;
 	}
 	.ef-frame {
